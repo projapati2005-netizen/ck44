@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
-      background-color: #0b1f1c;
+      background-color: #081714;
       color: #ffffff;
       font-family: sans-serif;
     }
@@ -16,17 +16,18 @@
       background: linear-gradient(180deg, #0f3d35 0%, #06231e 100%);
       border: 1px solid #1c5e52;
     }
-    .nav-active {
-      color: #00ffaa;
+    .game-card {
+      background-color: #0b241f;
+      border: 1px solid #134237;
     }
   </style>
 </head>
-<body class="pb-20">
+<body class="pb-24">
 
   <!-- ১. অ্যাপ ডাউনলোড ব্যানার -->
-  <div class="bg-[#061815] px-3 py-2 flex items-center justify-between border-b border-[#123630]">
+  <div class="bg-[#041210] px-3 py-2 flex items-center justify-between border-b border-[#0f3029]">
     <div class="flex items-center gap-2">
-      <div class="w-9 h-9 rounded bg-amber-500 flex items-center justify-center font-bold text-black text-xs shadow-md">CK44</div>
+      <div class="w-9 h-9 rounded bg-amber-500 flex items-center justify-center font-bold text-black text-xs shadow">CK44</div>
       <div>
         <p class="text-xs text-amber-400 font-semibold">APP UP TO ৳999 &gt;&gt;&gt;</p>
         <div class="text-[10px] text-amber-400">★★★★★</div>
@@ -38,88 +39,147 @@
     </div>
   </div>
 
-  <!-- ২. মেইন হেডার (লোগো, লগইন, রেজিস্ট্রেশন) -->
-  <header class="px-3 py-3 flex items-center justify-between border-b border-[#143b34]">
+  <!-- ২. হেডার -->
+  <header class="px-3 py-3 flex items-center justify-between border-b border-[#0f3029]">
     <div class="flex items-center gap-2">
       <i class="fa-solid fa-bars text-gray-300 text-lg"></i>
       <span class="text-xl font-extrabold text-white tracking-wide">CK44 <span class="text-teal-400 font-normal text-base">wintk</span></span>
     </div>
     <div class="flex items-center gap-2">
-      <button class="bg-[#124d42] text-teal-300 text-xs font-semibold px-3 py-1.5 rounded">Login</button>
-      <button class="bg-amber-400 text-black text-xs font-bold px-3 py-1.5 rounded">Register</button>
+      <button class="bg-[#0e3b33] text-teal-300 text-xs font-semibold px-3.5 py-1.5 rounded">Login</button>
+      <button class="bg-amber-400 text-black text-xs font-bold px-3.5 py-1.5 rounded">Register</button>
     </div>
   </header>
 
   <!-- ৩. অ্যানাউন্সমেন্ট বার -->
-  <div class="bg-[#082621] px-3 py-1.5 text-xs text-amber-300 flex items-center gap-2 border-b border-[#123b33]">
+  <div class="bg-[#051c17] px-3 py-1.5 text-xs text-amber-300 flex items-center gap-2 border-b border-[#0f3029]">
     <i class="fa-solid fa-bullhorn text-amber-400"></i>
     <marquee class="text-[11px]">More exciting rewards! Join now and claim your bonuses!</marquee>
   </div>
 
-  <!-- ৪. মূল কন্টেন্ট ও ক্যাটাগরি -->
+  <!-- ৪. ক্যাটাগরি ও গেম সেকশন -->
   <main class="p-3">
-    <!-- ক্যাটাগরি বাটনসমূহ -->
+    <!-- ক্যাটাগরি বাটন -->
     <div class="grid grid-cols-3 gap-2 mb-4">
       <button class="active-tab p-2.5 rounded-lg flex items-center justify-center gap-1.5 text-xs font-semibold text-teal-300">
         <i class="fa-solid fa-fire text-teal-400"></i> HOT GAMES
       </button>
-      <button class="bg-[#0b2923] p-2.5 rounded-lg flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-300">
+      <button class="bg-[#061f1a] p-2.5 rounded-lg flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-300">
         <i class="fa-solid fa-folder text-teal-400"></i> FAVORITES
       </button>
-      <button class="bg-[#0b2923] p-2.5 rounded-lg flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-300">
+      <button class="bg-[#061f1a] p-2.5 rounded-lg flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-300">
         <i class="fa-solid fa-dice-three text-teal-400"></i> SLOTS
       </button>
     </div>
 
-    <!-- গেম সেকশন হেডার -->
+    <!-- সেকশন টাইটেল -->
     <div class="flex items-center justify-between mb-3">
       <h2 class="text-teal-400 font-bold text-sm tracking-wide">HOT GAMES</h2>
       <div class="flex items-center gap-1">
-        <span class="text-amber-400 text-xs font-semibold mr-1 cursor-pointer">See All</span>
-        <button class="bg-[#0b2923] w-6 h-6 rounded flex items-center justify-center text-xs text-gray-300">&lt;</button>
-        <button class="bg-[#0b2923] w-6 h-6 rounded flex items-center justify-center text-xs text-gray-300">&gt;</button>
+        <span class="text-amber-400 text-xs font-semibold mr-1 cursor-pointer">See All &gt;</span>
+        <button class="bg-[#061f1a] w-6 h-6 rounded flex items-center justify-center text-xs text-gray-300">&lt;</button>
+        <button class="bg-[#061f1a] w-6 h-6 rounded flex items-center justify-center text-xs text-gray-300">&gt;</button>
       </div>
     </div>
 
-    <!-- গেম গ্রিড (Coming Soon কার্ডসমূহ) -->
-    <div class="grid grid-cols-3 gap-3">
-      <!-- কার্ড ১ -->
-      <div class="bg-[#092b24] border border-[#144239] rounded-lg p-3 text-center flex flex-col items-center">
-        <div class="w-14 h-14 bg-amber-500 rounded-lg mb-2 flex flex-col justify-center items-center font-bold text-black text-xs shadow-md border border-amber-300">
-          <span>CK44</span>
+    <!-- ফটোসহ গেমের গ্রিড -->
+    <div class="grid grid-cols-3 gap-2.5">
+      
+      <!-- গেম ১: Sweet Bonanza -->
+      <div class="game-card rounded-lg overflow-hidden flex flex-col justify-between">
+        <img src="https://images.bannerbear.com/requests/images/000/017/632/original/sweet-bonanza.jpg" alt="Sweet Bonanza" class="w-full h-24 object-cover">
+        <div class="p-1.5 text-left">
+          <p class="text-[11px] font-bold truncate text-white">Sweet Bonanza</p>
+          <p class="text-[9px] text-gray-400 truncate">Pragmatic Play</p>
         </div>
-        <span class="text-[10px] text-teal-300">Coming soon</span>
       </div>
 
-      <!-- কার্ড ২ -->
-      <div class="bg-[#092b24] border border-[#144239] rounded-lg p-3 text-center flex flex-col items-center">
-        <div class="w-14 h-14 bg-amber-500 rounded-lg mb-2 flex flex-col justify-center items-center font-bold text-black text-xs shadow-md border border-amber-300">
-          <span>CK44</span>
+      <!-- গেম ২: Crazy Time -->
+      <div class="game-card rounded-lg overflow-hidden flex flex-col justify-between">
+        <img src="https://static.casino.guru/res/202106041604/images/games/evolution-crazy-time.png" alt="Crazy Time" class="w-full h-24 object-cover">
+        <div class="p-1.5 text-left">
+          <p class="text-[11px] font-bold truncate text-white">Crazy Time</p>
+          <p class="text-[9px] text-gray-400 truncate">Evolution</p>
         </div>
-        <span class="text-[10px] text-teal-300">Coming soon</span>
       </div>
 
-      <!-- কার্ড ৩ -->
-      <div class="bg-[#092b24] border border-[#144239] rounded-lg p-3 text-center flex flex-col items-center">
-        <div class="w-14 h-14 bg-amber-500 rounded-lg mb-2 flex flex-col justify-center items-center font-bold text-black text-xs shadow-md border border-amber-300">
-          <span>CK44</span>
+      <!-- গেম ৩: Aviator -->
+      <div class="game-card rounded-lg overflow-hidden flex flex-col justify-between">
+        <img src="https://static.casino.guru/res/202209141017/images/games/spribe-aviator.png" alt="Aviator" class="w-full h-24 object-cover">
+        <div class="p-1.5 text-left">
+          <p class="text-[11px] font-bold truncate text-white">Aviator</p>
+          <p class="text-[9px] text-gray-400 truncate">Spribe</p>
         </div>
-        <span class="text-[10px] text-teal-300">Coming soon</span>
       </div>
+
+      <!-- গেম ৪: Gates of Olympus -->
+      <div class="game-card rounded-lg overflow-hidden flex flex-col justify-between">
+        <img src="https://images.bannerbear.com/requests/images/000/017/633/original/gates-of-olympus.jpg" alt="Gates of Olympus" class="w-full h-24 object-cover">
+        <div class="p-1.5 text-left">
+          <p class="text-[11px] font-bold truncate text-white">Gates of Olympus</p>
+          <p class="text-[9px] text-gray-400 truncate">Pragmatic Play</p>
+        </div>
+      </div>
+
+      <!-- গেম ৫: Lightning Roulette -->
+      <div class="game-card rounded-lg overflow-hidden flex flex-col justify-between">
+        <img src="https://static.casino.guru/res/202106041604/images/games/evolution-lightning-roulette.png" alt="Lightning Roulette" class="w-full h-24 object-cover">
+        <div class="p-1.5 text-left">
+          <p class="text-[11px] font-bold truncate text-white">Lightning Roul...</p>
+          <p class="text-[9px] text-gray-400 truncate">Evolution</p>
+        </div>
+      </div>
+
+      <!-- গেম ৬: Big Bass Bonanza -->
+      <div class="game-card rounded-lg overflow-hidden flex flex-col justify-between">
+        <img src="https://static.casino.guru/res/202106041604/images/games/pragmatic-big-bass-bonanza.png" alt="Big Bass Bonanza" class="w-full h-24 object-cover">
+        <div class="p-1.5 text-left">
+          <p class="text-[11px] font-bold truncate text-white">Big Bass Bonal...</p>
+          <p class="text-[9px] text-gray-400 truncate">Pragmatic Play</p>
+        </div>
+      </div>
+
+      <!-- গেম ৭: Starburst -->
+      <div class="game-card rounded-lg overflow-hidden flex flex-col justify-between">
+        <img src="https://static.casino.guru/res/202106041604/images/games/netent-starburst.png" alt="Starburst" class="w-full h-24 object-cover">
+        <div class="p-1.5 text-left">
+          <p class="text-[11px] font-bold truncate text-white">Starburst</p>
+          <p class="text-[9px] text-gray-400 truncate">NetEnt</p>
+        </div>
+      </div>
+
+      <!-- গেম ৮: Book of Dead -->
+      <div class="game-card rounded-lg overflow-hidden flex flex-col justify-between">
+        <img src="https://static.casino.guru/res/202106041604/images/games/playn-go-book-of-dead.png" alt="Book of Dead" class="w-full h-24 object-cover">
+        <div class="p-1.5 text-left">
+          <p class="text-[11px] font-bold truncate text-white">Book of Dead</p>
+          <p class="text-[9px] text-gray-400 truncate">Play'n GO</p>
+        </div>
+      </div>
+
+      <!-- গেম ৯: Dragon's Fortune -->
+      <div class="game-card rounded-lg overflow-hidden flex flex-col justify-between">
+        <img src="https://static.casino.guru/res/202106041604/images/games/pg-soft-dragon-hatch.png" alt="Dragon's Fortune" class="w-full h-24 object-cover">
+        <div class="p-1.5 text-left">
+          <p class="text-[11px] font-bold truncate text-white">Dragon's Fort...</p>
+          <p class="text-[9px] text-gray-400 truncate">PG Soft</p>
+        </div>
+      </div>
+
     </div>
   </main>
 
-  <!-- ৫. ফ্লোটিং সোশ্যাল বাটন (ডানপাশে) -->
-  <div class="fixed right-2 bottom-20 flex flex-col gap-2 z-40">
+  <!-- ৫. ফ্লোটিং সোশ্যাল আইকন -->
+  <div class="fixed right-2 bottom-16 flex flex-col gap-2 z-40">
     <div class="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white shadow-lg"><i class="fa-brands fa-whatsapp text-lg"></i></div>
     <div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-lg"><i class="fa-brands fa-facebook-f text-base"></i></div>
     <div class="w-9 h-9 rounded-full bg-sky-500 flex items-center justify-center text-white shadow-lg"><i class="fa-paper-plane text-base"></i></div>
     <div class="w-9 h-9 rounded-full bg-teal-600 flex items-center justify-center text-white shadow-lg"><i class="fa-headset text-base"></i></div>
   </div>
 
-  <!-- ৬. নিচের নেভিগেশন বার -->
-  <nav class="fixed bottom-0 left-0 right-0 bg-[#061916] border-t border-[#123b33] px-2 py-1.5 flex justify-around items-center text-center text-xs z-50">
-    <div class="flex flex-col items-center nav-active">
+  <!-- ৬. নেভিগেশন বার -->
+  <nav class="fixed bottom-0 left-0 right-0 bg-[#041310] border-t border-[#0f3029] px-2 py-1.5 flex justify-around items-center text-center text-xs z-50">
+    <div class="flex flex-col items-center text-teal-400">
       <i class="fa-solid fa-house text-base"></i>
       <span class="text-[10px] mt-0.5">Home</span>
     </div>
@@ -128,7 +188,7 @@
       <span class="text-[10px] mt-0.5">Promotion</span>
     </div>
     <div class="flex flex-col items-center text-gray-400 -mt-3">
-      <div class="w-10 h-10 rounded-full bg-teal-400 text-black flex items-center justify-center border-2 border-[#0b1f1c] shadow-md">
+      <div class="w-10 h-10 rounded-full bg-teal-400 text-black flex items-center justify-center border-2 border-[#081714] shadow-md">
         <i class="fa-solid fa-share-nodes text-base"></i>
       </div>
       <span class="text-[10px] mt-0.5 text-teal-300">Invite</span>
