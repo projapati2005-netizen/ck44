@@ -42,24 +42,6 @@ import imgWolfGold from "@/assets/games/wolf-gold.jpg";
 import imgFruitParty from "@/assets/games/fruit-party.jpg";
 import imgRoulette from "@/assets/games/roulette.jpg";
 
-// Live casino images
-import imgMonopoly from "@/assets/games/live-monopoly.jpg";
-import imgDragonTiger from "@/assets/games/live-dragon-tiger.jpg";
-import imgTeenPatti from "@/assets/games/live-teen-patti.jpg";
-import imgAndarBahar from "@/assets/games/live-andar-bahar.jpg";
-
-// Sports images
-import imgBasketball from "@/assets/games/sports-basketball.jpg";
-import imgTennis from "@/assets/games/sports-tennis.jpg";
-import imgBoxing from "@/assets/games/sports-boxing.jpg";
-import imgMMA from "@/assets/games/sports-mma.jpg";
-import imgF1 from "@/assets/games/sports-f1-racing.jpg";
-import imgEsports from "@/assets/games/sports-esports.jpg";
-import imgIceHockey from "@/assets/games/sports-ice-hockey.jpg";
-import imgBaseball from "@/assets/games/sports-baseball.jpg";
-import imgBadminton from "@/assets/games/sports-badminton.jpg";
-import imgGolf from "@/assets/games/sports-golf.jpg";
-
 const bannerSlides = [
   {
     title: "🎉 Monthly Invite Friend Bonus!",
@@ -306,8 +288,8 @@ const Index = () => {
           <Link to="/withdraw" className="bg-[#d97706] text-white text-xs font-bold px-3 py-1.5 rounded shadow">উত্তোলন</Link>
           {!user && (
             <>
-              <Button size="sm" onClick={() => navigate("/login")} className="bg-[#0e3b33] text-teal-300 hover:bg-[#0e3b33]/80 text-xs px-2.5 py-1.5 h-auto">Login</Button>
-              <Button size="sm" onClick={() => navigate("/register")} className="bg-amber-400 text-black hover:bg-amber-500 font-bold text-xs px-2.5 py-1.5 h-auto">Register</Button>
+              <Button size="sm" onClick={() => navigate("/login")} className="bg-[#0e3b33] text-teal-300 hover:bg-[#0e3b33]/80 text-xs px-2 py-1.5 h-auto">Login</Button>
+              <Button size="sm" onClick={() => navigate("/register")} className="bg-amber-400 text-black hover:bg-amber-500 font-bold text-xs px-2 py-1.5 h-auto">Register</Button>
             </>
           )}
         </div>
