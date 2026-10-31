@@ -2,11 +2,11 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Gamepad2, Trophy, TrendingUp, Zap, Star, Gift, Crown, Flame, ChevronRight, Fish, Sparkles, Swords, Ticket, Heart, Crosshair } from "lucide-react";
 import Footer from "@/components/Footer";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { gameNameToSlug } from "@/pages/games/GamePlayPage";
 
 import bannerWelcome from "@/assets/banner-welcome.jpg";
@@ -60,12 +60,6 @@ import imgBaseball from "@/assets/games/sports-baseball.jpg";
 import imgBadminton from "@/assets/games/sports-badminton.jpg";
 import imgGolf from "@/assets/games/sports-golf.jpg";
 
-// Crash images
-import imgJetX from "@/assets/games/crash-jetx.jpg";
-import imgSpaceman from "@/assets/games/crash-spaceman.jpg";
-import imgCrashX from "@/assets/games/crash-crashx.jpg";
-import imgRocketBlast from "@/assets/games/crash-rocketblast.jpg";
-
 const bannerSlides = [
   {
     title: "🎉 Monthly Invite Friend Bonus!",
@@ -98,10 +92,10 @@ const bannerSlides = [
 ];
 
 const marqueeMessages = [
-  "🎉কোটিপতি হতে আপনার ব্যক্তিগত লিঙ্কটি শেয়ার করুন!🎉",
+  "🎉 কোটিপতি হতে আপনার ব্যক্তিগত লিংকটি শেয়ার করুন! 🎉",
   "👑 দৈনিক প্রথম জমার বোনাস ৳১৬৮৮ পর্যন্ত ✨",
   "🎉 প্রতি শুক্রবার সুপার বোনাস দিবস! 🎉",
-  "👑প্রথম জমা বোনাস সর্বোচ্চ ৳৮,৮৮৮👑",
+  "👑 স্বাগত প্রথম জমা বোনাস সর্বোচ্চ ৳৮,৮৮৮ 👑",
 ];
 
 // ─── Category Data ───
@@ -113,10 +107,6 @@ const hotGames = [
   { name: "Gates of Olympus", provider: "Pragmatic Play", image: imgGatesOfOlympus },
   { name: "Lightning Roulette", provider: "Evolution", image: imgLightningRoulette },
   { name: "Big Bass Bonanza", provider: "Pragmatic Play", image: imgBigBass },
-  { name: "Dragon's Fortune", provider: "PG Soft", image: imgDragonsFortune },
-  { name: "Book of Dead", provider: "Play'n GO", image: imgBookOfDead },
-  { name: "Starburst", provider: "NetEnt", image: imgStarburst },
-  { name: "Plinko", provider: "Custom", image: imgPlinko },
 ];
 
 const favoriteGames = [
@@ -126,10 +116,6 @@ const favoriteGames = [
   { name: "Mines", provider: "Custom", image: imgMines },
   { name: "Lightning Roulette", provider: "Evolution", image: imgLightningRoulette },
   { name: "Gates of Olympus", provider: "Pragmatic Play", image: imgGatesOfOlympus },
-  { name: "Plinko", provider: "Custom", image: imgPlinko },
-  { name: "Big Bass Bonanza", provider: "Pragmatic Play", image: imgBigBass },
-  { name: "Dragon Tiger", provider: "Evolution", image: imgDragonTiger },
-  { name: "Dice", provider: "Custom", image: imgDice },
 ];
 
 const slotGames = [
@@ -139,10 +125,6 @@ const slotGames = [
   { name: "Book of Dead", provider: "Play'n GO", image: imgBookOfDead },
   { name: "Starburst", provider: "NetEnt", image: imgStarburst },
   { name: "Wolf Gold", provider: "Pragmatic Play", image: imgWolfGold },
-  { name: "Mega Joker", provider: "NetEnt", image: imgMegaJoker },
-  { name: "Fruit Party", provider: "Pragmatic Play", image: imgFruitParty },
-  { name: "Dragon's Fortune", provider: "PG Soft", image: imgDragonsFortune },
-  { name: "Treasure Hunt", provider: "IGT", image: imgTreasureHunt },
 ];
 
 const liveGames = [
@@ -152,10 +134,6 @@ const liveGames = [
   { name: "Baccarat Squeeze", provider: "Evolution", image: imgBaccarat },
   { name: "Monopoly Live", provider: "Evolution", image: imgMonopoly },
   { name: "Teen Patti", provider: "Ezugi", image: imgTeenPatti },
-  { name: "Andar Bahar", provider: "Ezugi", image: imgAndarBahar },
-  { name: "Dragon Tiger", provider: "Evolution", image: imgDragonTiger },
-  { name: "Lucky Wheel", provider: "Evolution", image: imgLuckyWheel },
-  { name: "Roulette Master", provider: "Evolution", image: imgRoulette },
 ];
 
 const pokerGames = [
@@ -164,11 +142,7 @@ const pokerGames = [
   { name: "Baccarat Live", provider: "Evolution", image: imgBaccarat },
   { name: "Roulette Master", provider: "Evolution", image: imgRoulette },
   { name: "Casino Hold'em", provider: "Evolution", image: imgPoker },
-  { name: "Lightning Roulette", provider: "Evolution", image: imgLightningRoulette },
-  { name: "Crazy Time", provider: "Evolution", image: imgCrazyTime },
   { name: "Teen Patti", provider: "Ezugi", image: imgTeenPatti },
-  { name: "Dragon Tiger", provider: "Evolution", image: imgDragonTiger },
-  { name: "Andar Bahar", provider: "Ezugi", image: imgAndarBahar },
 ];
 
 const fishingGames = [
@@ -176,12 +150,8 @@ const fishingGames = [
   { name: "Ocean King", provider: "JDB", image: imgOceanKing },
   { name: "Treasure Hunt", provider: "Hacksaw", image: imgTreasureHunt },
   { name: "Big Bass Bonanza", provider: "Pragmatic Play", image: imgBigBass },
-  { name: "Golden Fish 2", provider: "JDB", image: imgGoldenFish },
-  { name: "Ocean King 3", provider: "JDB", image: imgOceanKing },
   { name: "Dragon's Fortune", provider: "PG Soft", image: imgDragonsFortune },
   { name: "Lucky Wheel", provider: "Evolution", image: imgLuckyWheel },
-  { name: "Coin Flip", provider: "Custom", image: imgCoinFlip },
-  { name: "Treasure Hunt 2", provider: "Hacksaw", image: imgTreasureHunt },
 ];
 
 const sportsGames = [
@@ -191,10 +161,6 @@ const sportsGames = [
   { name: "Tennis", provider: "CK444 Sports", image: imgTennis },
   { name: "Boxing", provider: "CK444 Sports", image: imgBoxing },
   { name: "MMA / UFC", provider: "CK444 Sports", image: imgMMA },
-  { name: "F1 Racing", provider: "CK444 Sports", image: imgF1 },
-  { name: "Ice Hockey", provider: "CK444 Sports", image: imgIceHockey },
-  { name: "Baseball", provider: "CK444 Sports", image: imgBaseball },
-  { name: "Golf", provider: "CK444 Sports", image: imgGolf },
 ];
 
 const eSportsGames = [
@@ -204,10 +170,6 @@ const eSportsGames = [
   { name: "Badminton Pro", provider: "CK444 E-Sports", image: imgBadminton },
   { name: "Basketball Pro", provider: "CK444 E-Sports", image: imgBasketball },
   { name: "Tennis Masters", provider: "CK444 E-Sports", image: imgTennis },
-  { name: "Boxing Championship", provider: "CK444 E-Sports", image: imgBoxing },
-  { name: "MMA Tournament", provider: "CK444 E-Sports", image: imgMMA },
-  { name: "Baseball League", provider: "CK444 E-Sports", image: imgBaseball },
-  { name: "Golf Masters", provider: "CK444 E-Sports", image: imgGolf },
 ];
 
 const lotteryGames = [
@@ -215,12 +177,8 @@ const lotteryGames = [
   { name: "Mega Lottery", provider: "JDB", image: imgTreasureHunt },
   { name: "Golden Ticket", provider: "PG Soft", image: imgDragonsFortune },
   { name: "Fortune Wheel", provider: "Evolution", image: imgLuckyWheel },
-  { name: "Diamond Jackpot", provider: "JDB", image: imgTreasureHunt },
   { name: "Coin Flip", provider: "Custom", image: imgCoinFlip },
   { name: "Dice Roll", provider: "Custom", image: imgDice },
-  { name: "Plinko Lottery", provider: "Custom", image: imgPlinko },
-  { name: "Mines Jackpot", provider: "Custom", image: imgMines },
-  { name: "Mega Joker", provider: "NetEnt", image: imgMegaJoker },
 ];
 
 // ─── Category Tab Config ───
@@ -249,7 +207,7 @@ const categoryGamesMap: Record<string, { games: { name: string; provider: string
   lottery: { games: lotteryGames, href: "/games/mini" },
 };
 
-// ─── Category Section Component (2 rows grid) ───
+// ─── Category Section Component ───
 
 const CategorySection = ({ tabKey, label, labelBn, icon: Icon, iconColor, games, href }: {
   tabKey: string;
@@ -320,16 +278,51 @@ const Index = () => {
   }, []);
 
   return (
-    <>
-      {/* Banner Carousel */}
+    <div className="bg-[#071714] text-white min-h-screen pb-24 font-sans">
+      
+      {/* ১. শীর্ষ অ্যাপ ডাউনলোড ব্যানার */}
+      <div className="bg-[#041210] px-3 py-2 flex items-center justify-between border-b border-[#0f3029]">
+        <div className="flex items-center gap-2">
+          <div className="w-9 h-9 rounded bg-amber-500 flex items-center justify-center font-bold text-black text-xs shadow">CK44</div>
+          <div>
+            <p className="text-xs text-amber-400 font-semibold">APP UP TO ৳999 &gt;&gt;&gt;</p>
+            <div className="text-[10px] text-amber-400">★★★★★</div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <button className="bg-amber-400 text-black text-xs font-bold px-3.5 py-1.5 rounded-full shadow">Download</button>
+          <span className="text-gray-400 text-lg cursor-pointer">&times;</span>
+        </div>
+      </div>
+
+      {/* ২. মেইন হেডার (লোগো, জমা, উত্তোলন, লগইন ও রেজিস্টার বাটন) */}
+      <header className="px-3 py-3 flex items-center justify-between border-b border-[#0f3029]">
+        <div className="flex items-center gap-2">
+          <i className="fa-solid fa-bars text-gray-300 text-lg"></i>
+          <span className="text-xl font-extrabold text-amber-400 tracking-wide">CK444.COM</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <Link to="/deposit" className="bg-[#10b981] text-white text-xs font-bold px-3 py-1.5 rounded shadow">জমা</Link>
+          <Link to="/withdraw" className="bg-[#d97706] text-white text-xs font-bold px-3 py-1.5 rounded shadow">উত্তোলন</Link>
+          {!user && (
+            <>
+              <Button size="sm" onClick={() => navigate("/login")} className="bg-[#0e3b33] text-teal-300 hover:bg-[#0e3b33]/80 text-xs px-2.5 py-1.5 h-auto">Login</Button>
+              <Button size="sm" onClick={() => navigate("/register")} className="bg-amber-400 text-black hover:bg-amber-500 font-bold text-xs px-2.5 py-1.5 h-auto">Register</Button>
+            </>
+          )}
+        </div>
+      </header>
+
+      {/* ৩. অ্যানাউন্সমেন্ট ও নোটিশ বার */}
+      <div className="bg-[#051c17] px-3 py-1.5 text-xs text-amber-300 flex items-center gap-2 border-b border-[#0f3029]">
+        <i className="fa-solid fa-bullhorn text-amber-400"></i>
+        <marquee className="text-[11px]">স্বাগত প্রথম জমার বোনাস ৮১৬৮৮ পর্যন্ত! প্রতি শুক্রবার বিশেষ ক্যাশব্যাক এবং রিলোড বোনাস উপভোগ করুন।</marquee>
+      </div>
+
+      {/* ৪. প্রমোশনাল ব্যানার স্লাইডার */}
       <section className="relative px-2 sm:px-3 py-2 md:py-3">
         <div className="relative rounded-xl overflow-hidden border-2 border-secondary/60 shadow-[0_0_20px_hsl(40_100%_50%/0.25)]">
-          <div className="absolute top-0 left-0 w-6 h-6 md:w-10 md:h-10 border-t-[3px] border-l-[3px] border-secondary rounded-tl-xl z-10" />
-          <div className="absolute top-0 right-0 w-6 h-6 md:w-10 md:h-10 border-t-[3px] border-r-[3px] border-secondary rounded-tr-xl z-10" />
-          <div className="absolute bottom-0 left-0 w-6 h-6 md:w-10 md:h-10 border-b-[3px] border-l-[3px] border-secondary rounded-bl-xl z-10" />
-          <div className="absolute bottom-0 right-0 w-6 h-6 md:w-10 md:h-10 border-b-[3px] border-r-[3px] border-secondary rounded-br-xl z-10" />
-
-          <div className="relative h-[160px] sm:h-[200px] md:h-[300px] lg:h-[340px]">
+          <div className="relative h-[160px] sm:h-[200px] md:h-[300px]">
             {bannerSlides.map((slide, i) => (
               <motion.div
                 key={i}
@@ -341,57 +334,19 @@ const Index = () => {
               >
                 <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-transparent" />
-                <div className="absolute inset-0 flex flex-col items-start justify-end p-3 sm:p-5 md:p-8 lg:p-10">
-                  <motion.h1
-                    key={`title-${currentSlide}`}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="font-display text-sm sm:text-xl md:text-3xl lg:text-4xl font-black mb-1 text-secondary neon-text-gold drop-shadow-lg max-w-[85%] md:max-w-[60%] leading-tight"
-                  >
+                <div className="absolute inset-0 flex flex-col items-start justify-end p-3 sm:p-5">
+                  <h1 className="font-display text-sm sm:text-xl font-black mb-1 text-secondary neon-text-gold drop-shadow-lg">
                     {language === "bn" ? slide.titleBn : slide.title}
-                  </motion.h1>
-                  <motion.p
-                    key={`sub-${currentSlide}`}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.35 }}
-                    className="text-[10px] sm:text-xs md:text-sm text-foreground/90 mb-2 md:mb-4 drop-shadow max-w-[80%] md:max-w-[50%]"
-                  >
+                  </h1>
+                  <p className="text-[10px] sm:text-xs text-foreground/90 mb-2 drop-shadow">
                     {language === "bn" ? slide.subtitleBn : slide.subtitle}
-                  </motion.p>
-                  {!user && (
-                    <motion.div
-                      key={`btn-${currentSlide}`}
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.5 }}
-                      className="flex items-center gap-2"
-                    >
-                      <Button
-                        size="sm"
-                        onClick={() => navigate("/register")}
-                        className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-display text-xs md:text-sm rounded-full px-5 md:px-7 neon-glow-gold"
-                      >
-                        {t("joinNow")}
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => navigate("/login")}
-                        className="border-foreground/30 text-foreground hover:bg-primary/40 font-display text-xs md:text-sm rounded-full px-5 md:px-7"
-                      >
-                        {t("login")}
-                      </Button>
-                    </motion.div>
-                  )}
+                  </p>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <div className="absolute bottom-2 md:bottom-3 right-3 md:right-5 flex gap-1.5 z-20">
+          <div className="absolute bottom-2 right-3 flex gap-1.5 z-20">
             {bannerSlides.map((_, i) => (
               <button
                 key={i}
@@ -403,16 +358,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Marquee */}
-      <div className="bg-card/80 border-y border-border py-1.5 overflow-hidden">
-        <div className="animate-marquee whitespace-nowrap flex gap-12">
-          {[...marqueeMessages, ...marqueeMessages].map((msg, i) => (
-            <span key={i} className="text-xs text-secondary font-semibold">{msg}</span>
-          ))}
+      {/* ৫. রেফারেল বা ইনভাইট ব্যানার */}
+      <div className="px-3 mb-3">
+        <div className="bg-[#092620] border border-[#14473b] rounded-lg p-2.5 text-center text-xs text-amber-300 font-semibold shadow">
+          🎉 কোটিপতি হতে আপনার ব্যক্তিগত লিংকটি শেয়ার করুন! 🎆
         </div>
       </div>
 
-      {/* ─── Category Tabs (like reference image) ─── */}
+      {/* ৬. ক্যাটাগরি ট্যাব (Hot Games, Favorites, Slots ইত্যাদি) */}
       <div className="px-2 py-3">
         <div className="flex gap-1.5 overflow-x-auto scrollbar-hide pb-1">
           {categoryTabs.map((tab) => (
@@ -430,7 +383,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* ─── All Category Sections ─── */}
+      {/* ৭. সমস্ত ক্যাটাগরি ও গেম সেকশন */}
       <div className="px-2 sm:px-3">
         {categoryTabs.map((tab) => {
           const data = categoryGamesMap[tab.key];
@@ -449,7 +402,7 @@ const Index = () => {
         })}
       </div>
 
-      {/* Jackpot */}
+      {/* Jackpot Section */}
       <section className="mx-3 my-6 rounded-xl bg-gradient-to-r from-secondary/10 via-secondary/20 to-secondary/10 border border-secondary/30 py-5">
         <div className="flex items-center justify-center gap-4">
           <Crown className="h-8 w-8 text-secondary animate-pulse" />
@@ -463,31 +416,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Promos */}
-      <section className="px-3 pb-6">
-        <div className="flex items-center gap-2 mb-3">
-          <Gift className="h-5 w-5 text-secondary" />
-          <h2 className="font-display text-base md:text-lg font-bold">{t("promotions")}</h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {[
-            { title: language === "bn" ? "স্বাগত বোনাস ৳৮,৮৮৮" : "Welcome Bonus ৳8,888", desc: language === "bn" ? "প্রথম জমায় ১০০% বোনাস" : "100% on first deposit" },
-            { title: language === "bn" ? "দৈনিক ক্যাশব্যাক" : "Daily Cashback", desc: language === "bn" ? "প্রতিদিন ৫% পর্যন্ত ক্যাশব্যাক" : "Up to 5% cashback daily" },
-            { title: language === "bn" ? "রেফারেল বোনাস ৳৩০০" : "Referral Bonus ৳300", desc: language === "bn" ? "প্রতি বন্ধু আমন্ত্রণে বোনাস" : "Bonus for every friend invited" },
-          ].map((promo, i) => (
-            <Card key={i} className="border-secondary/30 bg-gradient-to-br from-card to-primary/10 hover:border-secondary/60 transition-all cursor-pointer">
-              <CardContent className="p-4">
-                <Gift className="h-6 w-6 text-secondary mb-2" />
-                <h3 className="font-display text-sm font-bold text-secondary mb-1">{promo.title}</h3>
-                <p className="text-xs text-muted-foreground">{promo.desc}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
       <Footer />
-    </>
+    </div>
   );
 };
 
