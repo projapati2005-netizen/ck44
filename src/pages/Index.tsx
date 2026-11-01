@@ -4,8 +4,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Gamepad2, Trophy, TrendingUp, Crown, Flame, ChevronRight, Fish, Swords, Ticket, Heart, Crosshair } from "lucide-react";
+import { Crown, Flame, ChevronRight } from "lucide-react";
+import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
+import { gameNameToSlug } from "@/pages/games/GamePlayPage";
 
 import bannerWelcome from "@/assets/banner-welcome.jpg";
 import bannerDaily from "@/assets/banner-daily.jpg";
@@ -50,13 +52,6 @@ const bannerSlides = [
   },
 ];
 
-const marqueeMessages = [
-  "🎉 কোটিপতি হতে আপনার ব্যক্তিগত লিংকটি শেয়ার করুন! 🎉",
-  "👑 দৈনিক প্রথম জমার বোনাস ৳১৬৮৮ পর্যন্ত ✨",
-  "🎉 প্রতি শুক্রবার সুপার বোনাস দিবস! 🎉",
-  "👑 স্বাগত প্রথম জমা বোনাস সর্বোচ্চ ৳৮,৮৮৮ 👑",
-];
-
 const hotGames = [
   { name: "Sweet Bonanza", provider: "Pragmatic Play", image: imgSweetBonanza },
   { name: "Crazy Time", provider: "Evolution", image: imgCrazyTime },
@@ -67,7 +62,7 @@ const hotGames = [
 ];
 
 const Index = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -97,10 +92,9 @@ const Index = () => {
         </div>
       </div>
 
-      {/* ২. মেইন হেডার (জমা, উত্তোলন, লগইন ও রেজিস্টার বাটন) */}
+      {/* ২. মেইন হেডার */}
       <header className="px-3 py-3 flex items-center justify-between border-b border-[#0f3029]">
         <div className="flex items-center gap-2">
-          <i className="fa-solid fa-bars text-gray-300 text-lg"></i>
           <span className="text-xl font-extrabold text-amber-400 tracking-wide">CK444.COM</span>
         </div>
         <div className="flex items-center gap-1.5">
@@ -115,15 +109,14 @@ const Index = () => {
         </div>
       </header>
 
-      {/* ৩. অ্যানাউন্সমেন্ট ও নোটিশ বার */}
+      {/* ৩. নোটিশ বার */}
       <div className="bg-[#051c17] px-3 py-1.5 text-xs text-amber-300 flex items-center gap-2 border-b border-[#0f3029]">
-        <i className="fa-solid fa-bullhorn text-amber-400"></i>
         <marquee className="text-[11px]">স্বাগত প্রথম জমার বোনাস ৮১৬৮৮ পর্যন্ত! প্রতি শুক্রবার বিশেষ ক্যাশব্যাক এবং রিলোড বোনাস উপভোগ করুন।</marquee>
       </div>
 
       {/* ৪. প্রমোশনাল ব্যানার স্লাইডার */}
       <section className="relative px-2 sm:px-3 py-2 md:py-3">
-        <div className="relative rounded-xl overflow-hidden border-2 border-secondary/60 shadow-[0_0_20px_hsl(40_100%_50%/0.25)]">
+        <div className="relative rounded-xl overflow-hidden border-2 border-secondary/60">
           <div className="relative h-[160px] sm:h-[200px] md:h-[300px]">
             {bannerSlides.map((slide, i) => (
               <motion.div
@@ -137,37 +130,17 @@ const Index = () => {
                 <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
                 <div className="absolute inset-0 flex flex-col items-start justify-end p-3 sm:p-5">
-                  <h1 className="font-display text-sm sm:text-xl font-black mb-1 text-secondary neon-text-gold drop-shadow-lg">
+                  <h1 className="font-display text-sm sm:text-xl font-black mb-1 text-secondary drop-shadow-lg">
                     {language === "bn" ? slide.titleBn : slide.title}
                   </h1>
-                  <p className="text-[10px] sm:text-xs text-foreground/90 mb-2 drop-shadow">
-                    {language === "bn" ? slide.subtitleBn : slide.subtitle}
-                  </p>
                 </div>
               </motion.div>
-            ))}
-          </div>
-
-          <div className="absolute bottom-2 right-3 flex gap-1.5 z-20">
-            {bannerSlides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentSlide(i)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${i === currentSlide ? "bg-secondary w-5 neon-glow-gold" : "bg-foreground/30 w-1.5 hover:bg-foreground/50"}`}
-              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* ৫. রেফারেল বা ইনভাইট ব্যানার */}
-      <div className="px-3 mb-3">
-        <div className="bg-[#092620] border border-[#14473b] rounded-lg p-2.5 text-center text-xs text-amber-300 font-semibold shadow">
-          🎉 কোটিপতি হতে আপনার ব্যক্তিগত লিংকটি শেয়ার করুন! 🎆
-        </div>
-      </div>
-
-      {/* ৬. হট গেমস সেকশন */}
+      {/* ৫. হট গেমস সেকশন */}
       <section className="px-2 sm:px-3 mb-5">
         <div className="flex items-center justify-between mb-3 px-1">
           <div className="flex items-center gap-2">
@@ -180,46 +153,33 @@ const Index = () => {
         </div>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2 sm:gap-3">
           {hotGames.map((game, i) => (
-            <motion.div
-              key={`hot-${game.name}-${i}`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.02 }}
-            >
-              <Card className="cursor-pointer border-border hover:border-secondary/50 transition-all group overflow-hidden bg-card"
-                onClick={() => navigate(`/play/${game.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`)}>
-                <div className="aspect-[4/3] relative overflow-hidden">
-                  <img src={game.image} alt={game.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-2">
-                    <span className="text-[10px] font-bold text-secondary bg-background/60 px-2 py-0.5 rounded-full">
-                      {language === "bn" ? "খেলুন" : "Play"}
-                    </span>
-                  </div>
-                </div>
-                <CardContent className="p-2">
-                  <p className="font-semibold text-xs truncate">{game.name}</p>
-                  <p className="text-[10px] text-muted-foreground">{game.provider}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
+            <Card key={`hot-${game.name}-${i}`} className="cursor-pointer border-border overflow-hidden bg-card"
+              onClick={() => navigate(`/play/${gameNameToSlug(game.name)}`)}>
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <img src={game.image} alt={game.name} className="w-full h-full object-cover" />
+              </div>
+              <CardContent className="p-2">
+                <p className="font-semibold text-xs truncate">{game.name}</p>
+                <p className="text-[10px] text-muted-foreground">{game.provider}</p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </section>
 
-      {/* ৭. জ্যাকপট সেকশন */}
+      {/* ৬. জ্যাকপট সেকশন */}
       <section className="mx-3 my-6 rounded-xl bg-gradient-to-r from-secondary/10 via-secondary/20 to-secondary/10 border border-secondary/30 py-5">
         <div className="flex items-center justify-center gap-4">
           <Crown className="h-8 w-8 text-secondary animate-pulse" />
           <div className="text-center">
             <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Jackpot</p>
-            <p className="font-display text-2xl md:text-3xl font-black text-secondary neon-text-gold">
-              ৳ 420,704,740.30
-            </p>
+            <p className="font-display text-2xl md:text-3xl font-black text-secondary">৳ 420,704,740.30</p>
           </div>
           <Crown className="h-8 w-8 text-secondary animate-pulse" />
         </div>
       </section>
 
+      <Footer />
     </div>
   );
 };
