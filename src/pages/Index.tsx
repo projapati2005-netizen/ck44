@@ -98,8 +98,8 @@ const Index = () => {
           <span className="text-xl font-extrabold text-amber-400 tracking-wide">CK444.COM</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <Link to="/deposit" className="bg-[#10b981] text-white text-xs font-bold px-3 py-1.5 rounded shadow">জমা</Link>
-          <Link to="/withdraw" className="bg-[#d97706] text-white text-xs font-bold px-3 py-1.5 rounded shadow">উত্তোলন</Link>
+          <Link to="/deposit" className="bg-[#10b981] text-white text-xs font-bold px-3 py-1.5 rounded shadow">জমা (৳)</Link>
+          <Link to="/withdraw" className="bg-[#d97706] text-white text-xs font-bold px-3 py-1.5 rounded shadow">উত্তোলন (৳)</Link>
           {!user && (
             <>
               <Button size="sm" onClick={() => navigate("/login")} className="bg-[#0e3b33] text-teal-300 hover:bg-[#0e3b33]/80 text-xs px-2 py-1.5 h-auto">Login</Button>
@@ -111,7 +111,7 @@ const Index = () => {
 
       {/* ৩. নোটিশ বার */}
       <div className="bg-[#051c17] px-3 py-1.5 text-xs text-amber-300 flex items-center gap-2 border-b border-[#0f3029]">
-        <marquee className="text-[11px]">স্বাগত প্রথম জমার বোনাস ৮১৬৮৮ পর্যন্ত! প্রতি শুক্রবার বিশেষ ক্যাশব্যাক এবং রিলোড বোনাস উপভোগ করুন।</marquee>
+        <marquee className="text-[11px]">স্বাগত প্রথম জমার বোনাস ৳৮১৬৮৮ পর্যন্ত! প্রতি শুক্রবার বিশেষ ক্যাশব্যাক এবং রিলোড বোনাস উপভোগ করুন।</marquee>
       </div>
 
       {/* ৪. প্রমোশনাল ব্যানার স্লাইডার */}
