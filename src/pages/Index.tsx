@@ -14,7 +14,6 @@ import bannerDaily from "@/assets/banner-daily.jpg";
 import bannerReferral from "@/assets/banner-referral.jpg";
 import bannerFriday from "@/assets/banner-friday.jpg";
 
-// Game images
 import imgSweetBonanza from "@/assets/games/sweet-bonanza.jpg";
 import imgCrazyTime from "@/assets/games/crazy-time.jpg";
 import imgAviator from "@/assets/games/aviator.jpg";
@@ -79,8 +78,6 @@ const marqueeMessages = [
   "🎉 প্রতি শুক্রবার সুপার বোনাস দিবস! 🎉",
   "👑 স্বাগত প্রথম জমা বোনাস সর্বোচ্চ ৳৮,৮৮৮ 👑",
 ];
-
-// ─── Category Data ───
 
 const hotGames = [
   { name: "Sweet Bonanza", provider: "Pragmatic Play", image: imgSweetBonanza },
@@ -163,8 +160,6 @@ const lotteryGames = [
   { name: "Dice Roll", provider: "Custom", image: imgDice },
 ];
 
-// ─── Category Tab Config ───
-
 const categoryTabs = [
   { key: "hot", label: "Hot Games", labelBn: "গরম খেলা", icon: Flame, color: "text-destructive" },
   { key: "favorite", label: "Favorite", labelBn: "প্রিয়", icon: Heart, color: "text-pink-400" },
@@ -188,8 +183,6 @@ const categoryGamesMap: Record<string, { games: { name: string; provider: string
   esports: { games: eSportsGames, href: "/games/sports" },
   lottery: { games: lotteryGames, href: "/games/mini" },
 };
-
-// ─── Category Section Component ───
 
 const CategorySection = ({ tabKey, label, labelBn, icon: Icon, iconColor, games, href }: {
   tabKey: string;
@@ -244,8 +237,6 @@ const CategorySection = ({ tabKey, label, labelBn, icon: Icon, iconColor, games,
   );
 };
 
-// ─── Main Component ───
-
 const Index = () => {
   const { t, language } = useLanguage();
   const { user } = useAuth();
@@ -277,7 +268,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* ২. মেইন হেডার (লোগো, জমা, উত্তোলন, লগইন ও রেজিস্টার বাটন) */}
+      {/* ২. মেইন হেডার */}
       <header className="px-3 py-3 flex items-center justify-between border-b border-[#0f3029]">
         <div className="flex items-center gap-2">
           <i className="fa-solid fa-bars text-gray-300 text-lg"></i>
@@ -347,7 +338,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* ৬. ক্যাটাগরি ট্যাব (Hot Games, Favorites, Slots ইত্যাদি) */}
+      {/* ৬. ক্যাটাগরি ট্যাব */}
       <div className="px-2 py-3">
         <div className="flex gap-1.5 overflow-x-auto scrollbar-hide pb-1">
           {categoryTabs.map((tab) => (
@@ -365,7 +356,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* ৭. সমস্ত ক্যাটাগরি ও গেম সেকশন */}
+      {/* ৭. গেম সেকশন */}
       <div className="px-2 sm:px-3">
         {categoryTabs.map((tab) => {
           const data = categoryGamesMap[tab.key];
@@ -384,7 +375,7 @@ const Index = () => {
         })}
       </div>
 
-      {/* Jackpot Section */}
+      {/* ৮. জ্যাকপট সেকশন */}
       <section className="mx-3 my-6 rounded-xl bg-gradient-to-r from-secondary/10 via-secondary/20 to-secondary/10 border border-secondary/30 py-5">
         <div className="flex items-center justify-center gap-4">
           <Crown className="h-8 w-8 text-secondary animate-pulse" />
