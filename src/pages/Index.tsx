@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Crown, Flame, ChevronRight } from "lucide-react";
+import { Crown, Flame, ChevronRight, Home, Gift, Users, Award, Gem, Trophy, Gamepad2, Fish, Dices } from "lucide-react";
 import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
 import { gameNameToSlug } from "@/pages/games/GamePlayPage";
@@ -75,7 +75,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="bg-[#071714] text-white min-h-screen pb-24 font-sans">
+    <div className="bg-[#071714] text-white min-h-screen pb-28 font-sans">
       
       {/* ১. শীর্ষ অ্যাপ ডাউনলোড ব্যানার */}
       <div className="bg-[#041210] px-3 py-2 flex items-center justify-between border-b border-[#0f3029]">
@@ -140,7 +140,28 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ৫. হট গেমস সেকশন */}
+      {/* ৫. গেম ক্যাটাগরি বাটন সেকশন (ছবি অনুযায়ী যুক্ত করা হয়েছে) */}
+      <section className="px-2 sm:px-3 my-3">
+        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
+          <button className="flex items-center gap-2 bg-[#092c24] hover:bg-[#0f3d32] border border-[#144d40] px-4 py-2.5 rounded-xl text-xs font-bold text-white shrink-0 shadow">
+            <Flame className="h-4 w-4 text-teal-400" /> HOT GAMES
+          </button>
+          <button className="flex items-center gap-2 bg-[#092c24] hover:bg-[#0f3d32] border border-[#144d40] px-4 py-2.5 rounded-xl text-xs font-bold text-white shrink-0 shadow">
+            <Trophy className="h-4 w-4 text-teal-400" /> FAVORITES
+          </button>
+          <button className="flex items-center gap-2 bg-[#092c24] hover:bg-[#0f3d32] border border-[#144d40] px-4 py-2.5 rounded-xl text-xs font-bold text-white shrink-0 shadow">
+            <Gamepad2 className="h-4 w-4 text-teal-400" /> SLOTS
+          </button>
+          <button className="flex items-center gap-2 bg-[#092c24] hover:bg-[#0f3d32] border border-[#144d40] px-4 py-2.5 rounded-xl text-xs font-bold text-white shrink-0 shadow">
+            <Dices className="h-4 w-4 text-teal-400" /> LIVE CASINO
+          </button>
+          <button className="flex items-center gap-2 bg-[#092c24] hover:bg-[#0f3d32] border border-[#144d40] px-4 py-2.5 rounded-xl text-xs font-bold text-white shrink-0 shadow">
+            <Fish className="h-4 w-4 text-teal-400" /> FISH
+          </button>
+        </div>
+      </section>
+
+      {/* ৬. হট গেমস সেকশন */}
       <section className="px-2 sm:px-3 mb-5">
         <div className="flex items-center justify-between mb-3 px-1">
           <div className="flex items-center gap-2">
@@ -167,7 +188,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ৬. জ্যাকপট সেকশন */}
+      {/* ৭. জ্যাকপট সেকশন */}
       <section className="mx-3 my-6 rounded-xl bg-gradient-to-r from-secondary/10 via-secondary/20 to-secondary/10 border border-secondary/30 py-5">
         <div className="flex items-center justify-center gap-4">
           <Crown className="h-8 w-8 text-secondary animate-pulse" />
@@ -178,6 +199,29 @@ const Index = () => {
           <Crown className="h-8 w-8 text-secondary animate-pulse" />
         </div>
       </section>
+
+      {/* ৮. নিচের বটম নেভিগেশন বার (ছবি অনুযায়ী যুক্ত করা হলো) */}
+      <div className="fixed bottom-0 left-0 right-0 bg-[#061e18] border-t border-[#0f3d32] py-2 px-4 flex items-center justify-around z-50 shadow-lg">
+        <Link to="/" className="flex flex-col items-center text-amber-400">
+          <Home className="h-5 w-5" />
+          <span className="text-[10px] font-semibold mt-0.5">Home</span>
+        </Link>
+        <Link to="/promotion" className="flex flex-col items-center text-teal-300 hover:text-amber-400">
+          <Gift className="h-5 w-5" />
+          <span className="text-[10px] font-semibold mt-0.5">Promotion</span>
+        </Link>
+        <Link to="/invite" className="flex flex-col items-center -mt-5 bg-teal-400 text-black p-3 rounded-full shadow-lg border-4 border-[#071714]">
+          <Users className="h-6 w-6" />
+        </Link>
+        <Link to="/reward" className="flex flex-col items-center text-teal-300 hover:text-amber-400">
+          <Award className="h-5 w-5" />
+          <span className="text-[10px] font-semibold mt-0.5">Reward</span>
+        </Link>
+        <Link to="/member" className="flex flex-col items-center text-teal-300 hover:text-amber-400">
+          <Gem className="h-5 w-5" />
+          <span className="text-[10px] font-semibold mt-0.5">Member</span>
+        </Link>
+      </div>
 
       <Footer />
     </div>
