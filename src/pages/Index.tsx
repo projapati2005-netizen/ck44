@@ -14,6 +14,7 @@ import bannerDaily from "@/assets/banner-daily.jpg";
 import bannerReferral from "@/assets/banner-referral.jpg";
 import bannerFriday from "@/assets/banner-friday.jpg";
 
+// Game images
 import imgSweetBonanza from "@/assets/games/sweet-bonanza.jpg";
 import imgCrazyTime from "@/assets/games/crazy-time.jpg";
 import imgAviator from "@/assets/games/aviator.jpg";
@@ -78,6 +79,8 @@ const marqueeMessages = [
   "🎉 প্রতি শুক্রবার সুপার বোনাস দিবস! 🎉",
   "👑 স্বাগত প্রথম জমা বোনাস সর্বোচ্চ ৳৮,৮৮৮ 👑",
 ];
+
+// ─── Category Data ───
 
 const hotGames = [
   { name: "Sweet Bonanza", provider: "Pragmatic Play", image: imgSweetBonanza },
@@ -160,6 +163,8 @@ const lotteryGames = [
   { name: "Dice Roll", provider: "Custom", image: imgDice },
 ];
 
+// ─── Category Tab Config ───
+
 const categoryTabs = [
   { key: "hot", label: "Hot Games", labelBn: "গরম খেলা", icon: Flame, color: "text-destructive" },
   { key: "favorite", label: "Favorite", labelBn: "প্রিয়", icon: Heart, color: "text-pink-400" },
@@ -183,6 +188,8 @@ const categoryGamesMap: Record<string, { games: { name: string; provider: string
   esports: { games: eSportsGames, href: "/games/sports" },
   lottery: { games: lotteryGames, href: "/games/mini" },
 };
+
+// ─── Category Section Component ───
 
 const CategorySection = ({ tabKey, label, labelBn, icon: Icon, iconColor, games, href }: {
   tabKey: string;
@@ -237,6 +244,8 @@ const CategorySection = ({ tabKey, label, labelBn, icon: Icon, iconColor, games,
   );
 };
 
+// ─── Main Component ───
+
 const Index = () => {
   const { t, language } = useLanguage();
   const { user } = useAuth();
@@ -253,7 +262,7 @@ const Index = () => {
   return (
     <div className="bg-[#071714] text-white min-h-screen pb-24 font-sans">
       
-      {/* ১. শীর্ষ অ্যাপ ডাউনলোড ব্যানার */}
+      {/* ১. শীর্ষ অ্যাপ ডাউনলোড ব্যানার (একবারই থাকবে) */}
       <div className="bg-[#041210] px-3 py-2 flex items-center justify-between border-b border-[#0f3029]">
         <div className="flex items-center gap-2">
           <div className="w-9 h-9 rounded bg-amber-500 flex items-center justify-center font-bold text-black text-xs shadow">CK44</div>
@@ -268,7 +277,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* ২. মেইন হেডার */}
+      {/* ২. মেইন হেডার (লোগো, জমা, উত্তোলন, লগইন ও রেজিস্টার বাটন - ডুপ্লিকেট রিমুভ করা) */}
       <header className="px-3 py-3 flex items-center justify-between border-b border-[#0f3029]">
         <div className="flex items-center gap-2">
           <i className="fa-solid fa-bars text-gray-300 text-lg"></i>
@@ -279,8 +288,8 @@ const Index = () => {
           <Link to="/withdraw" className="bg-[#d97706] text-white text-xs font-bold px-3 py-1.5 rounded shadow">উত্তোলন</Link>
           {!user && (
             <>
-              <Button size="sm" onClick={() => navigate("/login")} className="bg-[#0e3b33] text-teal-300 hover:bg-[#0e3b33]/80 text-xs px-2 py-1.5 h-auto">Login</Button>
-              <Button size="sm" onClick={() => navigate("/register")} className="bg-amber-400 text-black hover:bg-amber-500 font-bold text-xs px-2 py-1.5 h-auto">Register</Button>
+              <Button size="sm" onClick={() => navigate("/login")} className="bg-[#0e3b33] text-teal-300 hover:bg-[#0e3b33]/80 text-xs px-2.5 py-1.5 h-auto">Login</Button>
+              <Button size="sm" onClick={() => navigate("/register")} className="bg-amber-400 text-black hover:bg-amber-500 font-bold text-xs px-2.5 py-1.5 h-auto">Register</Button>
             </>
           )}
         </div>
@@ -338,7 +347,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* ৬. ক্যাটাগরি ট্যাব */}
+      {/* ৬. ক্যাটাগরি ট্যাব (Hot Games, Favorites, Slots ইত্যাদি) */}
       <div className="px-2 py-3">
         <div className="flex gap-1.5 overflow-x-auto scrollbar-hide pb-1">
           {categoryTabs.map((tab) => (
@@ -356,7 +365,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* ৭. গেম সেকশন */}
+      {/* ৭. সমস্ত ক্যাটাগরি ও গেম সেকশন */}
       <div className="px-2 sm:px-3">
         {categoryTabs.map((tab) => {
           const data = categoryGamesMap[tab.key];
@@ -375,7 +384,7 @@ const Index = () => {
         })}
       </div>
 
-      {/* ৮. জ্যাকপট সেকশন */}
+      {/* Jackpot Section */}
       <section className="mx-3 my-6 rounded-xl bg-gradient-to-r from-secondary/10 via-secondary/20 to-secondary/10 border border-secondary/30 py-5">
         <div className="flex items-center justify-center gap-4">
           <Crown className="h-8 w-8 text-secondary animate-pulse" />
