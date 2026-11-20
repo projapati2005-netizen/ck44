@@ -1,39 +1,1305 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CK44 - Online Casino & Gaming</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  
-  <style>
-    body {
-      background-color: #071714;
-      color: #ffffff;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    /* Hide scrollbar for IE, Edge and Firefox */
-    .no-scrollbar {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CK44 Wintk - Gaming, Promotions, Rewards, Invite & Member</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #072924;
+            --bg-card: #0c3b34;
+            --bg-header: #06211d;
+            --accent-gold: #facc15;
+            --accent-green: #22c55e;
+            --text-light: #ffffff;
+            --text-muted: #a3c2bd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background-color: #031512;
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 430px;
+            background: linear-gradient(180deg, #09352e 0%, #06241f 100%);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 85px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.85);
+            overflow-x: hidden;
+        }
+
+        /* Slide-out Side Drawer Menu */
+        .drawer-backdrop {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.65); display: none; z-index: 950;
+        }
+        .drawer-backdrop.show { display: block; }
+
+        .side-drawer {
+            position: fixed; top: 0; left: calc(50% - 215px); width: 280px; height: 100vh;
+            background: linear-gradient(180deg, #093b33 0%, #052620 100%); border-right: 1px solid #155c50;
+            z-index: 960; transform: translateX(-110%); transition: transform 0.28s ease;
+            overflow-y: auto; padding: 12px 10px 30px 10px; box-shadow: 6px 0 24px rgba(0,0,0,0.6);
+        }
+        @media (max-width: 430px) {
+            .side-drawer { left: 0; width: 78%; max-width: 290px; }
+        }
+        .side-drawer.open { transform: translateX(0); }
+        .drawer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .drawer-tile {
+            background: rgba(12, 62, 53, 0.85); border: 1px solid rgba(45, 212, 191, 0.16);
+            border-radius: 10px; padding: 12px 6px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 6px; color: #e2e8f0;
+            font-size: 11px; font-weight: 600; text-align: center; cursor: pointer; line-height: 1.2;
+        }
+        .drawer-tile:hover { background: rgba(20, 96, 82, 0.95); border-color: #2dd4bf; }
+        .drawer-tile i { font-size: 20px; }
+
+        /* Top App Download Bar */
+        .top-download-bar {
+            background: linear-gradient(90deg, #052e27, #0d4b40);
+            padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #16594e;
+        }
+        .app-info { display: flex; align-items: center; gap: 10px; }
+        .app-icon {
+            width: 40px; height: 40px; background: #143d18; border: 2px solid var(--accent-gold);
+            border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 10px; color: var(--accent-gold);
+        }
+        .app-icon i { font-size: 11px; color: #ef4444; }
+        .app-text h4 { font-size: 12px; color: var(--accent-gold); font-weight: 600; }
+        .stars { color: var(--accent-gold); font-size: 9px; }
+        .download-actions { display: flex; align-items: center; gap: 8px; }
+        .btn-download {
+            background: linear-gradient(180deg, #fde047 0%, #eab308 100%); color: #422006;
+            font-weight: 700; font-size: 12px; padding: 5px 12px; border-radius: 6px; border: none; cursor: pointer;
+        }
+        .btn-close {
+            background: rgba(255,255,255,0.15); color: #fff; border: none;
+            width: 22px; height: 22px; border-radius: 50%; font-size: 11px; cursor: pointer;
+        }
+
+        /* Main Header */
+        header#mainHeader {
+            padding: 10px 14px; display: flex; align-items: center; justify-content: space-between;
+            background-color: var(--bg-header); position: sticky; top: 0; z-index: 90; border-bottom: 1px solid #12473e;
+        }
+        .header-left { display: flex; align-items: center; gap: 10px; }
+        .menu-icon { font-size: 20px; color: var(--text-muted); cursor: pointer; }
+        .logo { font-size: 20px; font-weight: 800; letter-spacing: 0.5px; display: flex; align-items: center; }
+        .logo .ck { color: #e67e22; }
+        .logo .divider { color: #2c5e56; margin: 0 5px; font-weight: 300; }
+        .logo .win { color: #ffffff; }
+        .logo .tk { color: #22c55e; }
+
+        .header-user-pill { display: flex; align-items: center; gap: 8px; }
+        .hdr-avatar {
+            width: 32px; height: 32px; border-radius: 50%; border: 2px solid #f59e0b;
+            background: #ffe4e6; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer;
+        }
+        .hdr-bal-box {
+            background: #041d19; border: 1px solid #185c51; border-radius: 8px;
+            padding: 4px 10px; font-size: 12px; font-weight: 700; color: #2dd4bf;
+            display: flex; align-items: center; gap: 6px;
+        }
+
+        /* Page Views */
+        .page-view { display: none; }
+        .page-view.active { display: block; }
+
+        /* Home Page Styles */
+        .marquee-bar {
+            margin: 8px 12px; background: #05221d; border: 1px solid #144d43;
+            border-radius: 20px; padding: 5px 12px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #d1fae5;
+        }
+        .marquee-bar i { color: var(--accent-gold); }
+        .marquee-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .hero-banner {
+            margin: 10px 12px; border-radius: 14px;
+            background: radial-gradient(circle at 75% 40%, #ef4444 0%, #991b1b 60%, #450a0a 100%);
+            border: 1px solid #f87171; padding: 14px; position: relative; overflow: hidden; min-height: 158px;
+            display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 6px 15px rgba(0,0,0,0.45);
+        }
+        .hero-banner.slide-2 { background: radial-gradient(circle at 75% 40%, #10b981 0%, #065f46 60%, #022c22 100%); border-color: #34d399; }
+        .hero-banner.slide-3 { background: radial-gradient(circle at 75% 40%, #eab308 0%, #854d0e 60%, #422006 100%); border-color: #fde047; }
+        .banner-content { width: 66%; z-index: 2; }
+        .banner-tag { background: #15803d; color: #fef08a; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 4px; display: inline-block; border: 1px solid #facc15; }
+        .banner-title { font-size: 17px; font-weight: 800; line-height: 1.2; color: #fde047; margin: 5px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .banner-sub { font-size: 12px; color: #ffffff; font-weight: 600; line-height: 1.25; }
+        .banner-graphic { position: absolute; right: 10px; top: 18px; font-size: 46px; z-index: 1; }
+        .banner-dots { display: flex; justify-content: center; gap: 6px; margin-top: 8px; z-index: 3; }
+        .b-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35); cursor: pointer; }
+        .b-dot.active { width: 16px; border-radius: 6px; background: #ffffff; }
+
+        .home-wallet-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 2px 12px 10px 12px; }
+        .hw-btn {
+            background: linear-gradient(180deg, #0f4c42 0%, #09352e 100%); border: 1px solid #1d6b5e;
+            border-radius: 10px; padding: 10px; display: flex; align-items: center; justify-content: center;
+            gap: 8px; color: #ffffff; font-size: 13px; font-weight: 700; cursor: pointer;
+        }
+        .hw-btn i { color: #facc15; font-size: 15px; }
+
+        /* Single-Row Horizontal Category Tabs */
+        .category-tabs {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 8px;
+            padding: 4px 12px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .category-tabs::-webkit-scrollbar { display: none; }
+        .cat-tab {
+            flex: 0 0 auto;
+            background: #0c3b34;
+            border: 1px solid #16594e;
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #e2e8f0;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .cat-tab.active {
+            background: linear-gradient(180deg, #13544a 0%, #0b3831 100%);
+            border-color: #2dd4bf;
+            color: #ffffff;
+        }
+        .cat-tab i { color: #2dd4bf; font-size: 13px; }
+
+        .section-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 12px 10px 12px; }
+        .section-title { font-size: 15px; font-weight: 700; color: #ffffff; }
+        .section-controls { display: flex; align-items: center; gap: 6px; }
+        .btn-see-all { background: #0f443c; color: var(--accent-gold); border: 1px solid #1b6358; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; }
+        .nav-arrow { background: #0f443c; color: #a3c2bd; border: 1px solid #1b6358; width: 26px; height: 25px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; cursor: pointer; }
+
+        .games-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 12px 15px 12px; }
+        .game-card { border-radius: 12px; aspect-ratio: 3/4; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); cursor: pointer; border: 1px solid rgba(255,255,255,0.15); }
+        .card-super-ace { background: linear-gradient(135deg, #fde047 0%, #ca8a04 50%, #713f12 100%); }
+        .card-showdown { background: linear-gradient(135deg, #d97706 0%, #78350f 60%, #451a03 100%); }
+        .card-magic { background: linear-gradient(135deg, #ec4899 0%, #7e22ce 60%, #3b0764 100%); }
+        .card-aviator { background: linear-gradient(135deg, #991b1b 0%, #450a0a 70%, #18181b 100%); }
+        .card-rocket { background: linear-gradient(135deg, #ea580c 0%, #9a3412 60%, #1e293b 100%); }
+        .card-super-elements { background: linear-gradient(135deg, #2563eb 0%, #7c3aed 60%, #db2777 100%); }
+        .card-top { display: flex; justify-content: space-between; align-items: flex-start; z-index: 2; }
+        .provider-badge { background: rgba(0,0,0,0.6); color: #fde047; font-size: 9px; font-weight: 800; padding: 2px 5px; border-radius: 4px; border: 1px solid #facc15; }
+        .fav-btn { color: #ffffff; font-size: 13px; background: rgba(0,0,0,0.3); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .fav-btn.liked { color: #ef4444; }
+        .card-center-icon { font-size: 36px; text-align: center; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); z-index: 2; }
+        .card-bottom { text-align: center; z-index: 2; background: linear-gradient(transparent, rgba(0,0,0,0.85)); margin: -8px; padding: 12px 4px 6px 4px; }
+        .game-title { font-size: 11px; font-weight: 800; text-transform: uppercase; line-height: 1.1; }
+        .game-sub { font-size: 8px; color: #fde047; font-weight: 700; margin-top: 2px; }
+
+        /* Promotion Page Styles */
+        .promo-container { padding: 12px; }
+        .promo-heading { font-size: 16px; font-weight: 800; color: #2dd4bf; margin-bottom: 10px; text-transform: uppercase; }
+        .filter-pills { display: flex; gap: 8px; margin-bottom: 14px; overflow-x: auto; scrollbar-width: none; }
+        .filter-pills::-webkit-scrollbar { display: none; }
+        .filter-btn { background: #0b3831; color: #cbd5e1; border: 1px solid #17574d; padding: 5px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+        .filter-btn.active { background: #145348; color: #ffffff; border-color: #2dd4bf; }
+        .promo-card { background: #0b3a33; border: 1px solid #185c51; border-radius: 12px; overflow: hidden; margin-bottom: 14px; }
+        .promo-banner { padding: 14px; min-height: 120px; position: relative; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+        .bg-green-promo { background: radial-gradient(circle at 80% 30%, #22c55e, #064e3b 65%, #022c22 100%); }
+        .bg-teal-promo { background: radial-gradient(circle at 75% 35%, #0d9488, #115e59 65%, #042f2e 100%); }
+        .promo-badge-top { background: #ea580c; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; width: fit-content; margin-bottom: 6px; border: 1px solid #facc15; }
+        .promo-bn-title { font-size: 15px; font-weight: 700; line-height: 1.25; color: #fff; max-width: 74%; z-index: 2; }
+        .promo-bn-highlight { color: #fde047; font-weight: 800; font-size: 17px; }
+        .promo-bn-sub { font-size: 11px; color: #fef08a; margin-top: 4px; z-index: 2; max-width: 74%; }
+        .promo-visual-icon { position: absolute; right: 12px; bottom: 10px; font-size: 44px; opacity: 0.9; z-index: 1; }
+        .promo-footer { background: #082e28; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; border-top: 1px solid #144d43; }
+        .promo-footer-text { font-size: 12px; font-weight: 600; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .btn-view { background: linear-gradient(180deg, #fde047 0%, #eab308 100%); color: #422006; border: none; padding: 5px 16px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; flex-shrink: 0; }
+
+        /* Reward Page Styles */
+        #page-reward { background-color: #f4f6f9; min-height: calc(100vh - 60px); color: #1e293b; }
+        .reward-top-bg { background: linear-gradient(135deg, #f59e0b 0%, #ea580c 55%, #dc2626 100%); padding: 14px 16px 85px 16px; position: relative; overflow: hidden; }
+        .reward-watermark { position: absolute; top: 32px; left: 50%; transform: translateX(-50%); font-size: 56px; font-weight: 900; color: rgba(255, 255, 255, 0.14); letter-spacing: 3px; pointer-events: none; }
+        .reward-nav-bar { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; }
+        .reward-back-btn { color: #fde047; font-size: 18px; cursor: pointer; width: 30px; height: 30px; display: flex; align-items: center; }
+        .reward-page-title { color: #fde047; font-size: 16px; font-weight: 700; text-align: center; flex: 1; margin-right: 30px; }
+        .vip-profile-card { margin: -65px 14px 16px 14px; background: linear-gradient(145deg, #e2e8f0 0%, #cbd5e1 60%, #94a3b8 100%); border-radius: 14px; padding: 16px; position: relative; box-shadow: 0 8px 20px rgba(0,0,0,0.12); border: 1.5px solid #ffffff; z-index: 5; }
+        .signin-ribbon { position: absolute; top: 0; right: 0; background: linear-gradient(90deg, #b91c1c, #dc2626); color: #ffffff; padding: 6px 14px 6px 16px; border-radius: 0 12px 0 18px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+        .vip-user-row { display: flex; align-items: center; gap: 14px; margin-top: 8px; }
+        .vip-avatar { width: 60px; height: 60px; border-radius: 50%; border: 2.5px solid #d97706; background: linear-gradient(135deg, #fda4af, #f43f5e); display: flex; align-items: center; justify-content: center; font-size: 28px; color: #fff; flex-shrink: 0; }
+        .vip-id-row { display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; color: #0f172a; }
+        .vip-nickname { font-size: 11px; color: #475569; margin: 2px 0 4px 0; display: flex; align-items: center; gap: 6px; }
+        .vip-balance-row { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; color: #334155; }
+        .vip-progress-section { margin-top: 14px; padding-top: 10px; }
+        .vip-level-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .vip-badge-label { display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 800; color: #475569; }
+        .vip-benefits-link { font-size: 12px; font-weight: 600; color: #334155; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+        .vip-bar-wrap { display: flex; align-items: center; gap: 8px; }
+        .vip-progress-track { flex: 1; height: 4px; background: rgba(100, 116, 139, 0.3); border-radius: 4px; overflow: hidden; }
+        .vip-progress-fill { width: 5%; height: 100%; background: #64748b; }
+        .vip-ratio { font-size: 11px; color: #475569; font-weight: 600; }
+
+        .reward-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 14px 20px 14px; }
+        .reward-tile { border-radius: 14px; height: 118px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: #ffffff; cursor: pointer; }
+        .tile-bonus { background: linear-gradient(135deg, #22c55e 0%, #34d399 100%); }
+        .tile-signin { background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); }
+        .tile-rescue { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
+        .tile-invite { background: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%); }
+        .tile-promo { background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%); }
+        .tile-icon-circle { width: 48px; height: 48px; background: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 21px; }
+        .tile-bonus .tile-icon-circle { color: #22c55e; }
+        .tile-signin .tile-icon-circle { color: #3b82f6; }
+        .tile-rescue .tile-icon-circle { color: #f59e0b; }
+        .tile-invite .tile-icon-circle { color: #f43f5e; }
+        .tile-promo .tile-icon-circle { color: #06b6d4; }
+        .tile-label { font-size: 13px; font-weight: 600; }
+
+        /* Invite Friends Page Styles */
+        #page-invite { background-color: #ffffff; color: #1e293b; min-height: 100vh; }
+        .invite-top-header { background-color: #0b3d35; padding: 13px 16px; display: flex; align-items: center; position: sticky; top: 0; z-index: 80; }
+        .invite-back-arrow { color: #facc15; font-size: 18px; cursor: pointer; width: 28px; }
+        .invite-header-title { color: #facc15; font-size: 16px; font-weight: 700; flex: 1; text-align: center; margin-right: 28px; }
+        .invite-subtabs { display: flex; border-bottom: 1px solid #e2e8f0; background: #ffffff; overflow-x: auto; scrollbar-width: none; padding: 0 8px; }
+        .invite-subtabs::-webkit-scrollbar { display: none; }
+        .invite-tab { padding: 11px 12px; font-size: 13px; font-weight: 600; color: #334155; white-space: nowrap; cursor: pointer; position: relative; }
+        .invite-tab.active { color: #0284c7; }
+        .invite-tab.active::after { content: ''; position: absolute; bottom: 0; left: 10px; right: 10px; height: 2.5px; background: #0284c7; border-radius: 2px; }
+        .invite-subview { display: none; padding: 12px; }
+        .invite-subview.active { display: block; }
+        .share-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+        .share-box-title { font-size: 13px; font-weight: 700; color: #1e293b; margin-bottom: 10px; }
+        .share-row { display: flex; gap: 10px; align-items: flex-start; }
+        .qr-column { display: flex; flex-direction: column; align-items: center; gap: 5px; flex-shrink: 0; }
+        .qr-placeholder { width: 68px; height: 68px; background: #ffffff; border: 2px solid #0f172a; border-radius: 6px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 6px; }
+        .qr-cell { background: #0f172a; border-radius: 1px; }
+        .qr-cell.empty { background: transparent; }
+        .btn-save-qr { background: #5b21b6; color: #ffffff; font-size: 8px; font-weight: 700; padding: 3px 6px; border-radius: 4px; border: none; cursor: pointer; }
+        .link-column { flex: 1; min-width: 0; }
+        .invite-link-bar { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 5px 6px 5px 12px; display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 10px; }
+        .invite-link-text { font-size: 11px; color: #334155; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .btn-copy-pill { background: #5b21b6; color: #ffffff; border: none; border-radius: 14px; padding: 4px 10px; font-size: 11px; cursor: pointer; flex-shrink: 0; }
+        .social-share-icons { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+        .social-share-icons::-webkit-scrollbar { display: none; }
+        .soc-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 14px; flex-shrink: 0; cursor: pointer; }
+        .soc-fb { background: #2563eb; } .soc-x { background: #0f172a; } .soc-tg { background: #0284c7; }
+        .soc-wa { background: #22c55e; } .soc-msg { background: #4ade80; } .soc-line { background: #16a34a; }
+        .invite-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
+        .stat-box { border-radius: 10px; padding: 12px 10px; text-align: center; color: #ffffff; }
+        .stat-blue { background: linear-gradient(135deg, #60a5fa, #3b82f6); }
+        .stat-purple { background: linear-gradient(135deg, #c084fc, #8b5cf6); }
+        .stat-label { font-size: 12px; font-weight: 600; opacity: 0.95; }
+        .stat-val { font-size: 20px; font-weight: 800; margin-top: 4px; }
+        .invite-highlight-text { text-align: center; margin-bottom: 14px; }
+        .invite-main-promo { font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+        .invite-sub-gold { font-size: 12px; font-weight: 700; color: #d97706; margin-bottom: 4px; }
+        .vip-ref-table { width: 100%; border-collapse: collapse; font-size: 11px; color: #1e293b; margin-bottom: 18px; }
+        .vip-ref-table th, .vip-ref-table td { border: 1px solid #cbd5e1; padding: 8px 5px; text-align: center; vertical-align: middle; }
+        .vip-ref-table th { background: #f8fafc; font-weight: 700; color: #0f172a; }
+        .section-center-title { text-align: center; font-size: 16px; font-weight: 800; color: #0f172a; margin: 14px 0 12px 0; }
+        .released-card { background: #eef2ff; border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; gap: 14px; margin-bottom: 10px; border: 1px solid #e0e7ff; }
+        .released-emoji { font-size: 34px; flex-shrink: 0; }
+        .released-info-title { font-size: 12px; font-weight: 600; color: #334155; }
+        .released-info-amt { font-size: 17px; font-weight: 800; color: #1e1b4b; margin: 2px 0; }
+        .released-info-sub { font-size: 11px; color: #64748b; }
+        .leaderboard-box { background: linear-gradient(180deg, #38bdf8 0%, #6366f1 55%, #9333ea 100%); border-radius: 14px; padding: 16px 12px; color: #ffffff; margin-bottom: 16px; }
+        .podium-row { display: flex; justify-content: space-around; align-items: flex-end; margin-bottom: 16px; text-align: center; }
+        .podium-item { width: 32%; }
+        .podium-avatar { width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 6px auto; background: #fef08a; border: 3px solid #ffffff; display: flex; align-items: center; justify-content: center; font-size: 26px; position: relative; }
+        .podium-item.first .podium-avatar { width: 68px; height: 68px; font-size: 32px; border-color: #fde047; }
+        .rank-tag { position: absolute; top: -6px; left: -4px; background: #f59e0b; color: #fff; font-size: 10px; font-weight: 800; padding: 1px 5px; border-radius: 6px; }
+        .podium-phone { font-size: 11px; font-weight: 600; }
+        .podium-amt { font-size: 11px; font-weight: 800; color: #fef08a; }
+        .winners-heading { text-align: center; font-size: 15px; font-weight: 800; margin-bottom: 10px; }
+        .winner-pill { background: #e0e7ff; color: #1e293b; border-radius: 20px; padding: 7px 14px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+        .winner-prize { font-weight: 800; color: #0f172a; }
+        .calc-box { background: linear-gradient(135deg, #f43f5e 0%, #6366f1 60%, #1e1b4b 100%); border-radius: 14px; padding: 16px; color: #ffffff; margin-bottom: 16px; }
+        .calc-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .calc-icon { font-size: 38px; }
+        .calc-title { font-size: 18px; font-weight: 800; line-height: 1.15; }
+        .calc-amount { text-align: center; font-size: 20px; font-weight: 800; color: #fde047; margin: 10px 0 6px 0; }
+        .calc-sub { text-align: center; font-size: 11px; color: #e2e8f0; margin-bottom: 12px; }
+        .calc-slider { width: 100%; accent-color: #22d3ee; cursor: pointer; }
+        .no-exp-note { text-align: right; font-size: 11px; color: #64748b; margin-bottom: 8px; }
+        .milestone-card { background: #eef2ff; border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; border: 1px solid #e0e7ff; }
+        .milestone-medal { font-size: 38px; flex-shrink: 0; width: 46px; text-align: center; }
+        .milestone-mid { flex: 1; }
+        .milestone-req { font-size: 12px; font-weight: 600; color: #1e293b; margin-bottom: 4px; }
+        .milestone-amt { font-size: 14px; font-weight: 800; color: #334155; display: flex; align-items: center; gap: 5px; }
+        .milestone-right { text-align: right; flex-shrink: 0; }
+        .milestone-prog { font-size: 13px; font-weight: 800; color: #334155; margin-bottom: 5px; }
+        .milestone-prog span { font-size: 10px; color: #64748b; }
+        .btn-avail { background: linear-gradient(90deg, #a855f7, #ec4899); color: #ffffff; border: none; border-radius: 6px; padding: 5px 12px; font-size: 11px; font-weight: 700; cursor: pointer; }
+        .earnings-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; margin-bottom: 14px; }
+        .earnings-head { text-align: center; font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 14px; }
+        .earnings-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 12px; color: #334155; }
+        .earnings-row b { color: #0f172a; font-size: 13px; }
+        .earnings-note { font-size: 11px; color: #475569; margin-top: 8px; line-height: 1.4; }
+        .filter-toolbar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+        .dd-select-btn { background: #0284c7; color: #ffffff; border: none; border-radius: 6px; padding: 7px 12px; font-size: 12px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+        .dd-outline-btn { background: #ffffff; color: #0284c7; border: 1px solid #38bdf8; border-radius: 6px; padding: 6px 10px; font-size: 12px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+        .table-col-header { background: #f1f5f9; padding: 9px 10px; display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; font-size: 11px; font-weight: 600; color: #475569; border-radius: 6px; }
+        .empty-state-box { text-align: center; padding: 55px 15px; color: #0284c7; }
+        .empty-state-icon { font-size: 56px; margin-bottom: 10px; opacity: 0.85; }
+        .empty-state-text { font-size: 16px; font-weight: 600; }
+        .l1-summary-card { background: #e0f2fe; border-radius: 10px; padding: 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .l1-gem-box { text-align: center; width: 48px; flex-shrink: 0; }
+        .l1-gem-icon { font-size: 26px; color: #0284c7; }
+        .l1-gem-lbl { font-size: 12px; font-weight: 800; color: #1e293b; }
+        .l1-mid-stats { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+        .l1-pill-stat { background: #ffffff; border-radius: 14px; padding: 4px 10px; font-size: 11px; text-align: center; }
+        .l1-pill-stat span { color: #0284c7; font-weight: 700; display: block; }
+        .l1-pill-stat b { color: #0f172a; font-size: 13px; }
+        .l1-right-times { display: flex; flex-direction: column; gap: 5px; font-size: 11px; color: #334155; }
+        .l1-time-item { background: rgba(255,255,255,0.65); padding: 4px 8px; border-radius: 6px; display: flex; justify-content: space-between; gap: 8px; }
+
+        /* Member / My Account Page Styles */
+        #page-member { background-color: #ffffff; color: #1e293b; min-height: 100vh; }
+        .member-top-header { background-color: #0b3d35; padding: 13px 16px; display: flex; align-items: center; position: sticky; top: 0; z-index: 80; }
+        .member-back-btn { color: #facc15; font-size: 18px; cursor: pointer; width: 28px; }
+        .member-header-title { color: #facc15; font-size: 16px; font-weight: 700; flex: 1; text-align: center; margin-right: 28px; }
+        .member-hero-card { background: linear-gradient(145deg, #e2e8f0 0%, #cbd5e1 65%, #94a3b8 100%); margin: 12px; border-radius: 14px; padding: 14px; position: relative; overflow: hidden; box-shadow: 0 5px 14px rgba(0,0,0,0.08); border: 1px solid #f1f5f9; }
+        .member-signin-tag { position: absolute; top: 0; right: 0; background: linear-gradient(90deg, #b91c1c, #dc2626); color: #ffffff; padding: 5px 12px 5px 14px; border-radius: 0 12px 0 16px; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 5px; cursor: pointer; }
+        .member-profile-top { display: flex; align-items: center; gap: 14px; margin-top: 6px; }
+        .member-avatar-ring { width: 64px; height: 64px; border-radius: 50%; border: 2.5px solid #d97706; background: #ffe4e6; display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; }
+        .member-vip-pill { background: linear-gradient(90deg, #64748b, #475569); color: #ffffff; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 12px; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 4px; }
+        .member-id-line { font-size: 15px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 6px; }
+        .member-sub-line { font-size: 11px; color: #334155; margin-top: 2px; display: flex; align-items: center; gap: 5px; }
+        .member-bal-bar { display: flex; align-items: center; justify-content: space-between; margin: 14px 0 12px 0; padding: 0 4px; }
+        .member-bal-amt { font-size: 20px; font-weight: 800; color: #1e293b; }
+        .member-refresh-icon { font-size: 16px; color: #334155; cursor: pointer; transition: transform 0.4s; }
+        .member-action-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .m-act-btn { background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%); border: 1px solid #cbd5e1; border-radius: 10px; padding: 9px 6px; font-size: 12px; font-weight: 700; color: #1e293b; text-align: center; cursor: pointer; line-height: 1.2; }
+        .member-center-pill { margin: 10px 14px 12px 14px; background: #e2e8f0; color: #334155; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 12px; display: inline-block; }
+        .member-menu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 6px; padding: 0 10px 24px 10px; }
+        .m-menu-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; cursor: pointer; position: relative; }
+        .m-icon-circle { width: 50px; height: 50px; background: #fef3c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #d97706; position: relative; }
+        .m-badge-red { position: absolute; top: -3px; right: -4px; background: #ef4444; color: #ffffff; font-size: 10px; font-weight: 700; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px; display: flex; align-items: center; justify-content: center; }
+        .m-menu-label { font-size: 11px; font-weight: 500; color: #334155; line-height: 1.2; }
+
+        /* Register & Login Page Styles */
+        .auth-screen-view {
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 25%, #0e5246 0%, #07322b 58%, #041d19 100%);
+            padding: 16px 20px 40px 20px; display: none; flex-direction: column; position: relative;
+        }
+        .auth-screen-view.active { display: flex; }
+        .auth-screen-back { color: #facc15; font-size: 20px; width: 34px; height: 34px; display: flex; align-items: center; cursor: pointer; margin-bottom: 10px; }
+        .auth-screen-logo { justify-content: center; font-size: 30px; margin-bottom: 22px; }
+        .auth-screen-heading { text-align: center; color: #facc15; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+        .auth-switch-prompt { text-align: center; font-size: 13px; color: #cbd5e1; margin-bottom: 22px; }
+        .auth-switch-link { color: #4ade80; font-weight: 700; text-decoration: underline; cursor: pointer; }
+        .auth-field-box { background: rgba(5, 34, 29, 0.78); border: 1.5px solid #166558; border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .auth-field-icon { color: #2dd4bf; font-size: 16px; width: 18px; text-align: center; }
+        .auth-field-input { flex: 1; background: transparent; border: none; outline: none; color: #ffffff; font-size: 14px; }
+        .auth-field-input::placeholder { color: #94a3b8; }
+        .auth-eye-btn { color: #2dd4bf; font-size: 15px; cursor: pointer; }
+        .auth-check-row { display: flex; align-items: flex-start; gap: 10px; font-size: 11px; color: #e2e8f0; line-height: 1.4; margin-bottom: 12px; cursor: pointer; }
+        .auth-custom-check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #cbd5e1; background: transparent; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 10px; color: #1e293b; }
+        .auth-custom-check.checked { background: #facc15; border-color: #facc15; }
+        .auth-meta-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin: 4px 0 22px 0; }
+        .auth-forgot-link { color: #4ade80; font-weight: 600; cursor: pointer; }
+        .btn-auth-submit { width: 100%; background: linear-gradient(180deg, #fde047 0%, #eab308 100%); color: #422006; border: none; border-radius: 10px; padding: 13px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3); }
+        .auth-or-divider { text-align: center; font-size: 12px; color: #cbd5e1; margin: 22px 0 14px 0; }
+        .auth-social-row { display: flex; justify-content: center; gap: 18px; margin-top: 8px; }
+        .auth-social-btn { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 3px 10px rgba(0,0,0,0.35); }
+        .auth-fb-btn { background: #1877f2; color: #ffffff; }
+        .auth-gg-btn { background: #ffffff; }
+
+        /* Bottom Sheet Picker Modal */
+        .sheet-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.55); display: none; align-items: flex-end; justify-content: center; z-index: 1050; }
+        .sheet-overlay.show { display: flex; }
+        .sheet-box { width: 100%; max-width: 430px; background: #ffffff; color: #1e293b; border-radius: 16px 16px 0 0; padding: 16px 0 20px 0; }
+        .sheet-header { display: flex; justify-content: space-between; align-items: center; padding: 0 16px 12px 16px; border-bottom: 1px solid #f1f5f9; }
+        .sheet-title { font-size: 15px; font-weight: 700; color: #0f172a; }
+        .sheet-close { background: #94a3b8; color: #fff; border: none; width: 22px; height: 22px; border-radius: 50%; font-size: 12px; cursor: pointer; }
+        .sheet-option { padding: 13px 18px; font-size: 13px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border-bottom: 1px solid #f8fafc; }
+        .sheet-option.selected { color: #ef4444; font-weight: 700; }
+
+        /* Floating Widgets */
+        .floating-widgets {
+            position: fixed; right: calc(50% - 205px); bottom: 90px;
+            display: flex; flex-direction: column; gap: 8px; z-index: 85;
+        }
+        @media (max-width: 430px) { .floating-widgets { right: 10px; } }
+        .float-btn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 17px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); cursor: pointer; border: 2px solid rgba(255,255,255,0.25); }
+        .float-wa { background: #22c55e; } .float-fb { background: #1877f2; } .float-top { background: #e67e22; width: 32px; height: 32px; font-size: 13px; align-self: center; }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed; bottom: 0; width: 100%; max-width: 430px; background: #06241f;
+            border-top: 1px solid #144d43; display: flex; justify-content: space-around; align-items: center;
+            padding: 8px 0 10px 0; z-index: 100;
+        }
+        .bottom-nav.hidden-nav { display: none; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #8bb0a9; font-size: 10px; font-weight: 600; cursor: pointer; width: 20%; }
+        .nav-item i { font-size: 18px; }
+        .nav-item.active { color: var(--accent-gold); position: relative; }
+        .nav-item.active::after { content: ''; width: 24px; height: 3px; background: var(--accent-gold); border-radius: 2px; position: absolute; bottom: -6px; }
+        .nav-invite-wrapper { position: relative; top: -16px; display: flex; flex-direction: column; align-items: center; width: 20%; cursor: pointer; }
+        .nav-invite-circle { width: 48px; height: 48px; background: radial-gradient(circle, #2dd4bf 0%, #0d9488 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #042f2e; font-size: 20px; border: 3px solid #06241f; box-shadow: 0 0 12px rgba(45, 212, 191, 0.5); }
+        .nav-invite-wrapper span { font-size: 10px; font-weight: 600; color: #8bb0a9; margin-top: 2px; }
+
+        /* Promo Detail Modal */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(2, 14, 12, 0.85); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 999; padding: 15px; }
+        .modal-overlay.show { display: flex; }
+        .modal-box { width: 100%; max-width: 390px; background: linear-gradient(180deg, #0b3d35 0%, #06241f 100%); border: 1.5px solid #1d6b5e; border-radius: 16px; padding: 20px; position: relative; color: #fff; }
+        .modal-close { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.1); border: none; color: #fff; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; }
+        .btn-gold-full { width: 100%; background: linear-gradient(180deg, #fde047 0%, #eab308 100%); color: #422006; border: none; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 800; cursor: pointer; margin-top: 6px; }
+    </style>
 </head>
 <body>
-  <div id="root"></div>
-  
-  <!-- Vite Main Script Entry -->
-  <script type="module" src="/src/main.tsx"></script>
+
+<div class="app-container">
+
+    <!-- Slide-out Drawer Backdrop & Menu -->
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer()"></div>
+    <aside class="side-drawer" id="sideDrawer">
+        <div class="drawer-grid">
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('home');"><i class="fas fa-fire" style="color:#f97316;"></i><span>Hot Games</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('invite');"><i class="fas fa-user-plus" style="color:#34d399;"></i><span>Invite friends</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('home');"><i class="fas fa-folder-heart" style="color:#fb7185;"></i><span>Favorites</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('promotion');"><i class="fas fa-gift" style="color:#facc15;"></i><span>Promotion</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('home');"><i class="fas fa-dice" style="color:#38bdf8;"></i><span>Slots</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('reward');"><i class="fas fa-award" style="color:#fbbf24;"></i><span>Reward<br>Center</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('home');"><i class="fas fa-circle-dot" style="color:#f87171;"></i><span>Live Casino</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); openPromoDetail('Manual Rebate', 'আপনার যোগ্য রিবেট বোনাস ম্যানুয়ালি ক্লেইম করুন।');"><i class="fas fa-hand-holding-dollar" style="color:#fde047;"></i><span>Manual<br>rebate</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('home');"><i class="fas fa-spade" style="color:#a78bfa;"></i><span>Poker</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('reward');"><i class="fas fa-gem" style="color:#22d3ee;"></i><span>VIP</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('home');"><i class="fas fa-fish" style="color:#60a5fa;"></i><span>Fish</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); openPromoDetail('Mission', 'দৈনিক মিশন সম্পন্ন করে বোনাস জিতুন!');"><i class="fas fa-bullseye" style="color:#fbbf24;"></i><span>Mission</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('home');"><i class="fas fa-baseball-bat-ball" style="color:#4ade80;"></i><span>Sports</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); openPromoDetail('Language', 'ভাষা নির্বাচন করুন: বাংলা / English');"><i class="fas fa-globe" style="color:#f43f5e;"></i><span>Language</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('home');"><i class="fas fa-gamepad" style="color:#c084fc;"></i><span>E-sports</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); alert('Downloading CK44 Mobile App...');"><i class="fas fa-cloud-arrow-down" style="color:#22c55e;"></i><span>APP<br>Download</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); switchPage('home');"><i class="fas fa-ticket" style="color:#fb923c;"></i><span>Lottery</span></div>
+            <div class="drawer-tile" onclick="closeDrawer(); openPromoDetail('Customer Service', '২৪/৭ লাইভ সাপোর্টে যোগাযোগ করুন।');"><i class="fas fa-headset" style="color:#4ade80;"></i><span>Customer<br>Service</span></div>
+        </div>
+    </aside>
+
+    <!-- Top App Download Bar -->
+    <div class="top-download-bar" id="downloadBar">
+        <div class="app-info">
+            <div class="app-icon"><i class="fas fa-crown"></i>CK44</div>
+            <div class="app-text">
+                <h4>APP UP TO ৳999 &gt;&gt;&gt;</h4>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+        </div>
+        <div class="download-actions">
+            <button class="btn-download" onclick="alert('Downloading App...')">Download</button>
+            <button class="btn-close" onclick="document.getElementById('downloadBar').style.display='none'"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header id="mainHeader">
+        <div class="header-left">
+            <i class="fas fa-bars menu-icon" onclick="openDrawer()"></i>
+            <div class="logo" onclick="switchPage('home')" style="cursor:pointer;">
+                <span class="ck">CK44</span><span class="divider">|</span><span class="win">win</span><span class="tk">tk</span>
+            </div>
+        </div>
+        <div class="header-user-pill">
+            <div class="hdr-avatar" onclick="switchPage('member')" title="My Account">👩🏻</div>
+            <div class="hdr-bal-box">
+                <span>৳ <span class="sharedBal">0.00</span></span>
+                <i class="fas fa-redo-alt" style="font-size:11px; cursor:pointer;" onclick="refreshBalance(this)"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- =====================================
+         1. HOME PAGE VIEW
+         ===================================== -->
+    <div class="page-view active" id="page-home">
+        <div class="marquee-bar">
+            <i class="fas fa-bullhorn"></i>
+            <div class="marquee-text" id="marqueeMsg">to claim your exclusive welcome rewards! 🚀 উলফাডাঙ্গা স্পেশাল বোনাস এখন লাইভ!</div>
+        </div>
+
+        <div class="hero-banner" id="heroBannerBox">
+            <div class="banner-content">
+                <div class="banner-tag" id="bannerTag">CK44</div>
+                <div class="banner-title" id="bannerTitle">স্বপ্ন বিজয়ী<br>৫০,০০০ টাকা</div>
+                <div class="banner-sub" id="bannerSub">50K Lucky Draw &amp; Welcome Bonus</div>
+            </div>
+            <div class="banner-graphic" id="bannerIcon">🎁</div>
+            <div class="banner-dots">
+                <span class="b-dot active" onclick="setBannerSlide(0, this)"></span>
+                <span class="b-dot" onclick="setBannerSlide(1, this)"></span>
+                <span class="b-dot" onclick="setBannerSlide(2, this)"></span>
+                <span class="b-dot" onclick="setBannerSlide(3, this)"></span>
+                <span class="b-dot" onclick="setBannerSlide(4, this)"></span>
+            </div>
+        </div>
+
+        <div class="home-wallet-row">
+            <button class="hw-btn" onclick="openPromoDetail('Deposit', 'bKash, Nagad বা Rocket-এর মাধ্যমে দ্রুত ডিপোজিট করুন।')">
+                <i class="fas fa-wallet"></i><span>Deposit</span>
+            </button>
+            <button class="hw-btn" onclick="openPromoDetail('Withdrawal', 'আপনার ওয়ালেট থেকে দ্রুত উত্তোলনের অনুরোধ পাঠান।')">
+                <i class="fas fa-money-bill-transfer"></i><span>Withdraw</span>
+            </button>
+        </div>
+
+        <!-- All Category Tabs in One Single Horizontal Row -->
+        <div class="category-tabs" id="homeCatRow">
+            <div class="cat-tab active" onclick="selectHomeCat(this, 'SLOTS')"><i class="fas fa-dice"></i> SLOTS</div>
+            <div class="cat-tab" onclick="selectHomeCat(this, 'LIVE CASINO')"><i class="fas fa-circle-dot"></i> LIVE CASINO</div>
+            <div class="cat-tab" onclick="selectHomeCat(this, 'POKER')"><i class="fas fa-spade"></i> POKER</div>
+            <div class="cat-tab" onclick="selectHomeCat(this, 'FISH')"><i class="fas fa-fish"></i> FISH</div>
+            <div class="cat-tab" onclick="selectHomeCat(this, 'SPORTS')"><i class="fas fa-baseball-bat-ball"></i> SPORTS</div>
+            <div class="cat-tab" onclick="selectHomeCat(this, 'E-SPORTS')"><i class="fas fa-gamepad"></i> E-SPORTS</div>
+            <div class="cat-tab" onclick="selectHomeCat(this, 'LOTTERY')"><i class="fas fa-ticket"></i> LOTTERY</div>
+        </div>
+
+        <div class="section-header">
+            <div class="section-title" id="homeSectionTitle">HOT GAMES</div>
+            <div class="section-controls">
+                <button class="btn-see-all" onclick="switchPage('promotion')">See All</button>
+                <button class="nav-arrow"><i class="fas fa-chevron-left"></i></button>
+                <button class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <div class="games-grid">
+            <div class="game-card card-super-ace" onclick="openPromoDetail('SUPER ACE (JILI)', 'গেমটি চালু করতে ডিপোজিট বা অ্যাকাউন্ট ব্যালেন্স চেক করুন।')">
+                <div class="card-top"><span class="provider-badge">JL</span><span class="fav-btn" onclick="event.stopPropagation(); toggleFav(this)"><i class="fas fa-heart"></i></span></div>
+                <div class="card-center-icon">👑</div>
+                <div class="card-bottom"><div class="game-title">SUPER ACE</div><div class="game-sub">JILI</div></div>
+            </div>
+            <div class="game-card card-showdown" onclick="openPromoDetail('SHOWDOWN (PG SOFT)', 'গেমটি চালু করতে ডিপোজিট বা অ্যাকাউন্ট ব্যালেন্স চেক করুন।')">
+                <div class="card-top"><span></span><span class="fav-btn" onclick="event.stopPropagation(); toggleFav(this)"><i class="fas fa-heart"></i></span></div>
+                <div class="card-center-icon">🤠</div>
+                <div class="card-bottom"><div class="game-title">SHOWDOWN</div><div class="game-sub">PG SOFT</div></div>
+            </div>
+            <div class="game-card card-magic" onclick="openPromoDetail('MAGIC 3 (WB)', 'গেমটি চালু করতে ডিপোজিট বা অ্যাকাউন্ট ব্যালেন্স চেক করুন।')">
+                <div class="card-top"><span></span><span class="fav-btn" onclick="event.stopPropagation(); toggleFav(this)"><i class="fas fa-heart"></i></span></div>
+                <div class="card-center-icon">🎩</div>
+                <div class="card-bottom"><div class="game-title">MAGIC 3</div><div class="game-sub">WB</div></div>
+            </div>
+            <div class="game-card card-aviator" onclick="openPromoDetail('AVIATOR (SPRIBE)', 'গেমটি চালু করতে ডিপোজিট বা অ্যাকাউন্ট ব্যালেন্স চেক করুন।')">
+                <div class="card-top"><span></span><span class="fav-btn" onclick="event.stopPropagation(); toggleFav(this)"><i class="fas fa-heart"></i></span></div>
+                <div class="card-center-icon">✈️</div>
+                <div class="card-bottom"><div class="game-title">AVIATOR</div><div class="game-sub">SPRIBE</div></div>
+            </div>
+            <div class="game-card card-rocket" onclick="openPromoDetail('SPACEMAN (PRAGMATIC)', 'গেমটি চালু করতে ডিপোজিট বা অ্যাকাউন্ট ব্যালেন্স চেক করুন।')">
+                <div class="card-top"><span></span><span class="fav-btn" onclick="event.stopPropagation(); toggleFav(this)"><i class="fas fa-heart"></i></span></div>
+                <div class="card-center-icon">🚀</div>
+                <div class="card-bottom"><div class="game-title">SPACEMAN</div><div class="game-sub">PRAGMATIC</div></div>
+            </div>
+            <div class="game-card card-super-elements" onclick="openPromoDetail('SUPER ELEMENTS', 'গেমটি চালু করতে ডিপোজিট বা অ্যাকাউন্ট ব্যালেন্স চেক করুন।')">
+                <div class="card-top"><span class="provider-badge">10000X</span><span class="fav-btn" onclick="event.stopPropagation(); toggleFav(this)"><i class="fas fa-heart"></i></span></div>
+                <div class="card-center-icon">⚡</div>
+                <div class="card-bottom"><div class="game-title">SUPER ELEMENTS</div><div class="game-sub">FEATURED</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================
+         2. PROMOTION PAGE VIEW
+         ===================================== -->
+    <div class="page-view" id="page-promotion">
+        <div class="promo-container">
+            <div class="promo-heading">PROMOTION</div>
+            <div class="filter-pills">
+                <button class="filter-btn active" onclick="filterPromos('all', this)">All</button>
+                <button class="filter-btn" onclick="filterPromos('hot', this)">HOT</button>
+                <button class="filter-btn" onclick="filterPromos('new', this)">NEW</button>
+                <button class="filter-btn" onclick="filterPromos('app', this)">APP Download</button>
+                <button class="filter-btn" onclick="filterPromos('ulfadanga', this)">উলফাডাঙ্গা</button>
+            </div>
+            <div class="promo-card" data-cat="ulfadanga hot new">
+                <div class="promo-banner bg-teal-promo">
+                    <span class="promo-badge-top">উলফাডাঙ্গা স্পেশাল</span>
+                    <div class="promo-bn-title">উলফাডাঙ্গা মেম্বারদের জন্য বিশেষ <span class="promo-bn-highlight">৫০০ টাকা</span> ওয়েলকাম বোনাস!</div>
+                    <div class="promo-bn-sub">উলফাডাঙ্গা ক্লাব কোড ব্যবহার করে ইনস্ট্যান্ট বোনাস বুঝে নিন</div>
+                    <div class="promo-visual-icon">🔥</div>
+                </div>
+                <div class="promo-footer">
+                    <div class="promo-footer-text">উলফাডাঙ্গা এক্সক্লুসিভ বোনাস অফার</div>
+                    <button class="btn-view" onclick="openPromoDetail('উলফাডাঙ্গা স্পেশাল বোনাস', 'উলফাডাঙ্গা কমিউনিটির সদস্যদের জন্য প্রথম ডিপোজিটে বিশেষ ৫০০ টাকা বোনাস।')">view</button>
+                </div>
+            </div>
+            <div class="promo-card" data-cat="hot new">
+                <div class="promo-banner bg-green-promo">
+                    <div class="promo-bn-title"><span class="promo-bn-highlight">WINTK</span> PROMO CODE EVERYDAY</div>
+                    <div class="promo-bn-sub">Grab today's WINTK promo code and claim your bonus</div>
+                    <div class="promo-visual-icon">🎁</div>
+                </div>
+                <div class="promo-footer">
+                    <div class="promo-footer-text">WINTK Daily Promo Code</div>
+                    <button class="btn-view" onclick="openPromoDetail('WINTK Daily Promo Code', 'প্রতিদিন নতুন WINTK প্রোমো কোড সংগ্রহ করে বোনাস দাবি করুন।')">view</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================
+         3. REWARD PAGE VIEW
+         ===================================== -->
+    <div class="page-view" id="page-reward">
+        <div class="reward-top-bg">
+            <div class="reward-watermark">REWARD</div>
+            <div class="reward-nav-bar">
+                <div class="reward-back-btn" onclick="switchPage('home')"><i class="fas fa-chevron-left"></i></div>
+                <div class="reward-page-title">My Rewards</div>
+            </div>
+        </div>
+
+        <div class="vip-profile-card">
+            <div class="signin-ribbon" onclick="openPromoDetail('Daily Sign In', 'প্রতিদিন সাইন ইন করে ফ্রি কয়েন এবং বোনাস সংগ্রহ করুন!')">
+                <i class="far fa-check-square"></i><span>Sign In</span><i class="fas fa-chevron-right" style="font-size:10px;"></i>
+            </div>
+            <div class="vip-user-row">
+                <div class="vip-avatar">👩🏻</div>
+                <div class="vip-user-details">
+                    <div class="vip-id-row">
+                        <span>1917451148</span>
+                        <i class="far fa-copy" onclick="copyText('1917451148')"></i>
+                    </div>
+                    <div class="vip-nickname">
+                        <span>Nickname: <b class="sharedNick">1917451148</b></span>
+                        <i class="fas fa-pen" onclick="editNickname()"></i>
+                    </div>
+                    <div class="vip-balance-row">
+                        <span>৳ <span class="sharedBal">0.00</span></span>
+                        <i class="fas fa-redo-alt" onclick="refreshBalance(this)"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="vip-progress-section">
+                <div class="vip-level-header">
+                    <div class="vip-badge-label"><i class="fas fa-crown" style="color:#64748b;"></i><span>VIP0</span></div>
+                    <div class="vip-benefits-link" onclick="openPromoDetail('VIP0 Benefits', 'ডিপোজিট এবং গেম খেলার মাধ্যমে VIP লেভেল আপগ্রেড করুন।')">
+                        <span>Benefits</span><i class="fas fa-chevron-circle-right"></i>
+                    </div>
+                </div>
+                <div class="vip-bar-wrap">
+                    <div class="vip-progress-track"><div class="vip-progress-fill"></div></div>
+                    <span class="vip-ratio">0 / 1</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="reward-grid">
+            <div class="reward-tile tile-bonus" onclick="openPromoDetail('My Bonus', 'আপনার ক্লেইমযোগ্য সকল বোনাস এখানে জমা হবে।')">
+                <div class="tile-icon-circle"><i class="fas fa-gift"></i></div>
+                <div class="tile-label">Bonus</div>
+            </div>
+            <div class="reward-tile tile-signin" onclick="openPromoDetail('Daily Sign In', 'টানা ৭ দিন সাইন ইন করলে বিশেষ বোনাস পাবেন!')">
+                <div class="tile-icon-circle"><i class="fas fa-calendar-check"></i></div>
+                <div class="tile-label">Sign In</div>
+            </div>
+            <div class="reward-tile tile-rescue" onclick="openPromoDetail('Rescue Fund', 'স্লট ও লাইভ গেমে লস রিকভারী বোনাস দাবি করুন।')">
+                <div class="tile-icon-circle"><i class="fas fa-coins"></i></div>
+                <div class="tile-label">Rescue fund</div>
+            </div>
+            <div class="reward-tile tile-invite" onclick="switchPage('invite')">
+                <div class="tile-icon-circle"><i class="fas fa-user-plus"></i></div>
+                <div class="tile-label">Invite Friends</div>
+            </div>
+            <div class="reward-tile tile-promo" onclick="openPromoCodeModal()">
+                <div class="tile-icon-circle"><i class="fas fa-percent"></i></div>
+                <div class="tile-label">Promo Code</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================
+         4. INVITE FRIENDS PAGE VIEW
+         ===================================== -->
+    <div class="page-view" id="page-invite">
+        <div class="invite-top-header">
+            <div class="invite-back-arrow" onclick="switchPage('home')"><i class="fas fa-chevron-left"></i></div>
+            <div class="invite-header-title">Invite Friends</div>
+        </div>
+
+        <div class="invite-subtabs">
+            <div class="invite-tab active" onclick="switchInviteSubTab('overview', this)">Overview</div>
+            <div class="invite-tab" onclick="switchInviteSubTab('rewards', this)">Rewards</div>
+            <div class="invite-tab" onclick="switchInviteSubTab('earnings', this)">Earnings</div>
+            <div class="invite-tab" onclick="switchInviteSubTab('records', this)">Records</div>
+            <div class="invite-tab" onclick="switchInviteSubTab('invited-list', this)">Invited List</div>
+        </div>
+
+        <div class="invite-subview active" id="inv-sub-overview">
+            <div class="share-box">
+                <div class="share-box-title">Share with your friends</div>
+                <div class="share-row">
+                    <div class="qr-column">
+                        <div class="qr-placeholder">
+                            <span class="qr-cell"></span><span class="qr-cell empty"></span><span class="qr-cell"></span>
+                            <span class="qr-cell empty"></span><span class="qr-cell"></span><span class="qr-cell empty"></span>
+                            <span class="qr-cell"></span><span class="qr-cell"></span><span class="qr-cell"></span>
+                        </div>
+                        <button class="btn-save-qr" onclick="alert('QR Invite Code Saved!')">Save invite code</button>
+                    </div>
+                    <div class="link-column">
+                        <div class="invite-link-bar">
+                            <span class="invite-link-text">http://www.ck44com.net/?r=llk2099</span>
+                            <button class="btn-copy-pill" onclick="copyText('http://www.ck44com.net/?r=llk2099')"><i class="far fa-copy"></i></button>
+                        </div>
+                        <div class="social-share-icons">
+                            <div class="soc-icon soc-fb" onclick="alert('Share on Facebook')"><i class="fab fa-facebook-f"></i></div>
+                            <div class="soc-icon soc-x" onclick="alert('Share on X')"><i class="fab fa-x-twitter"></i></div>
+                            <div class="soc-icon soc-tg" onclick="alert('Share on Telegram')"><i class="fab fa-telegram-plane"></i></div>
+                            <div class="soc-icon soc-wa" onclick="alert('Share on WhatsApp')"><i class="fab fa-whatsapp"></i></div>
+                            <div class="soc-icon soc-msg" onclick="alert('Share via SMS')"><i class="fas fa-comment-dots"></i></div>
+                            <div class="soc-icon soc-line" onclick="alert('Share on Line')"><i class="fab fa-line"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="invite-stats-grid">
+                <div class="stat-box stat-blue"><div class="stat-label">Today's Income</div><div class="stat-val">৳ 0.00</div></div>
+                <div class="stat-box stat-purple"><div class="stat-label">Yesterday's Income</div><div class="stat-val">৳ 0.00</div></div>
+                <div class="stat-box stat-purple"><div class="stat-label">Registers</div><div class="stat-val">0</div></div>
+                <div class="stat-box stat-blue"><div class="stat-label">Valid Referral</div><div class="stat-val">0</div></div>
+            </div>
+
+            <div class="invite-highlight-text">
+                <div class="invite-main-promo">Invite 1 person and earn up to 1000TK</div>
+                <div class="invite-sub-gold">Earn 2.2% on lower level deposits</div>
+                <div class="invite-sub-gold">Lower level earns 1% on every bet</div>
+            </div>
+
+            <table class="vip-ref-table">
+                <thead>
+                    <tr><th>Inviter<br>VIP level</th><th>Referral<br>bonus/person</th><th>Recommend<br>a friend<br>request</th><th>How to get it?</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>VIP0</td><td>100TK</td><td>Deposit 100TK &amp;<br>Bet 2000TK</td>
+                        <td rowspan="6" style="font-size:10px; color:#334155;">Noon the next day<br>Before 12 o'clock<br>Automatic transfer to account</td>
+                    </tr>
+                    <tr><td>VIP1-2</td><td>150TK</td><td>Deposit 100TK &amp;<br>Bet 2000TK</td></tr>
+                    <tr><td>VIP3-5</td><td>200TK</td><td>Deposit 100TK &amp;<br>Bet 2000TK</td></tr>
+                    <tr><td>VIP6-8</td><td>300TK &amp;<br>Golden EGG</td><td>Deposit 200TK &amp;<br>Bet 4000TK</td></tr>
+                    <tr><td>VIP9-18</td><td>400TK &amp;<br>Golden EGG</td><td>Deposit 300TK &amp;<br>Bet 6000TK</td></tr>
+                    <tr><td>VIP18-25</td><td>700TK &amp;<br>Golden EGG</td><td>Deposit 500TK &amp;<br>Bet 10000TK</td></tr>
+                </tbody>
+            </table>
+
+            <div class="section-center-title">Rewards Released to Date</div>
+            <div class="released-card"><div class="released-emoji">⭐</div><div><div class="released-info-title">Invitation Rewards</div><div class="released-info-amt">৳ 67,092,300.00</div><div class="released-info-sub">59658 claimed</div></div></div>
+            <div class="released-card"><div class="released-emoji">🏅</div><div><div class="released-info-title">Achievement Rewards</div><div class="released-info-amt">৳ 1,733,460.00</div><div class="released-info-sub">15343 claimed</div></div></div>
+            <div class="released-card"><div class="released-emoji">💰</div><div><div class="released-info-title">Deposit Rebate</div><div class="released-info-amt">৳ 45,249,443.39</div><div class="released-info-sub">175078 claimed</div></div></div>
+            <div class="released-card"><div class="released-emoji">⚽</div><div><div class="released-info-title">Betting Rebate</div><div class="released-info-amt">৳ 73,084,448.09</div><div class="released-info-sub">310908 claimed</div></div></div>
+
+            <div class="section-center-title">Leaderboard</div>
+            <div class="leaderboard-box">
+                <div class="podium-row">
+                    <div class="podium-item"><div class="podium-avatar"><span class="rank-tag">2nd</span>🤵🏻</div><div class="podium-phone">01******1</div><div class="podium-amt">৳ 20,288,039.24</div></div>
+                    <div class="podium-item first"><div class="podium-avatar"><span class="rank-tag">1st</span>👦🏻</div><div class="podium-phone">01******3</div><div class="podium-amt">৳ 23,981,872.12</div></div>
+                    <div class="podium-item"><div class="podium-avatar"><span class="rank-tag">3rd</span>👩🏻</div><div class="podium-phone">01******8</div><div class="podium-amt">৳ 13,731,987.76</div></div>
+                </div>
+                <div class="winners-heading">Who received the rewards</div>
+                <div class="winner-pill"><span>01*********0</span><span>Received</span><span class="winner-prize">Smash &amp; Win</span></div>
+                <div class="winner-pill"><span>01*********0</span><span>Received</span><span class="winner-prize">৳ 420.00</span></div>
+                <div class="winner-pill"><span>01*********0</span><span>Received</span><span class="winner-prize">Smash &amp; Win</span></div>
+                <div class="winner-pill"><span>01*********5</span><span>Received</span><span class="winner-prize">৳ 160.00</span></div>
+            </div>
+
+            <div class="calc-box">
+                <div class="calc-top"><div class="calc-icon">💌</div><div class="calc-title">Income<br>calculator</div></div>
+                <div class="calc-amount" id="calcRevenueText">৳ 1,000.00</div>
+                <div class="calc-sub">Invite <b id="calcUsersCount">1</b> active users, expected revenue</div>
+                <input type="range" min="1" max="50" value="1" class="calc-slider" oninput="updateCalculator(this.value)">
+            </div>
+        </div>
+
+        <div class="invite-subview" id="inv-sub-rewards">
+            <div class="no-exp-note">no expiration</div>
+            <div class="milestone-card"><div class="milestone-medal">🏅</div><div class="milestone-mid"><div class="milestone-req">Over 3 valid referral in total.</div><div class="milestone-amt">🪙 30.00</div></div><div class="milestone-right"><div class="milestone-prog">0<span>/3</span></div><button class="btn-avail" onclick="alert('Complete 3 valid referrals to claim!')">Available</button></div></div>
+            <div class="milestone-card"><div class="milestone-medal">🎖️</div><div class="milestone-mid"><div class="milestone-req">Over 7 valid referral in total.</div><div class="milestone-amt">🪙 40.00</div></div><div class="milestone-right"><div class="milestone-prog">0<span>/7</span></div><button class="btn-avail" onclick="alert('Complete 7 valid referrals to claim!')">Available</button></div></div>
+            <div class="milestone-card"><div class="milestone-medal">🥇</div><div class="milestone-mid"><div class="milestone-req">Over 12 valid referral in total.</div><div class="milestone-amt">🪙 50.00</div></div><div class="milestone-right"><div class="milestone-prog">0<span>/12</span></div><button class="btn-avail" onclick="alert('Complete 12 valid referrals to claim!')">Available</button></div></div>
+            <div class="milestone-card"><div class="milestone-medal">🎗️</div><div class="milestone-mid"><div class="milestone-req">Over 20 valid referral in total.</div><div class="milestone-amt">🪙 100.00</div></div><div class="milestone-right"><div class="milestone-prog">0<span>/20</span></div><button class="btn-avail" onclick="alert('Complete 20 valid referrals to claim!')">Available</button></div></div>
+        </div>
+
+        <div class="invite-subview" id="inv-sub-earnings">
+            <div class="earnings-card">
+                <div class="earnings-head">Today's Income: ৳ 0.00</div>
+                <div class="earnings-row"><span>Invitation Rewards</span><b>৳ 0.00</b></div>
+                <div class="earnings-row"><span>Achievement Rewards</span><b>৳ 0.00</b></div>
+                <div class="earnings-row"><span>Deposit Rebate</span><b>৳ 0.00</b></div>
+                <div class="earnings-row"><span>Betting Rebate</span><b>৳ 0.00</b></div>
+                <div class="earnings-row"><span>Registers</span><b>0</b></div>
+                <div class="earnings-row"><span>Valid Referral</span><b>0</b></div>
+                <div class="earnings-row"><span>Depositors</span><b>0</b></div>
+            </div>
+            <div class="earnings-card">
+                <div class="earnings-head">Total Income ৳ 0.00</div>
+                <div class="earnings-row"><span>Invitation Rewards</span><b>৳ 0.00</b></div>
+                <div class="earnings-row"><span>Achievement Rewards</span><b>৳ 0.00</b></div>
+                <div class="earnings-row"><span>Deposit Rebate</span><b>৳ 0.00</b></div>
+                <div class="earnings-row"><span>Betting Rebate</span><b>৳ 0.00</b></div>
+                <div class="earnings-row"><span>Registers</span><b>0</b></div>
+                <div class="earnings-row"><span>Valid Referral</span><b>0</b></div>
+                <div class="earnings-row"><span>Depositors</span><b>0</b></div>
+            </div>
+            <div class="earnings-note">Note : The system updates referral income records periodically.</div>
+        </div>
+
+        <div class="invite-subview" id="inv-sub-records">
+            <div class="filter-toolbar">
+                <button class="dd-select-btn" onclick="openSheet('types')"><span id="selectedTypeLabel">Invitation Rewards</span><i class="fas fa-caret-down"></i></button>
+                <button class="dd-outline-btn"><i class="far fa-calendar-alt"></i><span>11/20- 11/20</span></button>
+            </div>
+            <div class="table-col-header"><span>Registration date</span><span>Username</span><span>Amount</span></div>
+            <div class="empty-state-box"><div class="empty-state-icon"><i class="fas fa-paper-plane"></i></div><div class="empty-state-text">No data</div></div>
+        </div>
+
+        <div class="invite-subview" id="inv-sub-invited-list">
+            <div class="l1-summary-card">
+                <div class="l1-gem-box"><div class="l1-gem-icon"><i class="far fa-gem"></i></div><div class="l1-gem-lbl">L1</div></div>
+                <div class="l1-mid-stats">
+                    <div class="l1-pill-stat"><span>Registers</span><b>0</b></div>
+                    <div class="l1-pill-stat"><span>Valid Referral</span><b>0</b></div>
+                </div>
+                <div class="l1-right-times">
+                    <div class="l1-time-item"><span>Today</span><b>+0</b></div>
+                    <div class="l1-time-item"><span>Yesterday</span><b>+0</b></div>
+                    <div class="l1-time-item"><span>Current Month</span><b>+0</b></div>
+                </div>
+            </div>
+            <div class="filter-toolbar">
+                <button class="dd-select-btn" onclick="openSheet('status')"><span id="selectedStatusLabel">All</span><i class="fas fa-caret-down"></i></button>
+                <button class="dd-select-btn" style="padding:7px 10px;"><i class="far fa-check-circle"></i><span>Today</span></button>
+                <button class="dd-outline-btn"><i class="far fa-calendar-alt"></i><span>11/20- 11/20</span></button>
+            </div>
+            <div class="empty-state-box"><div class="empty-state-icon"><i class="fas fa-paper-plane"></i></div><div class="empty-state-text">No data</div></div>
+        </div>
+    </div>
+
+    <!-- =====================================
+         5. MEMBER / MY ACCOUNT PAGE
+         ===================================== -->
+    <div class="page-view" id="page-member">
+        <div class="member-top-header">
+            <div class="member-back-btn" onclick="switchPage('home')"><i class="fas fa-chevron-left"></i></div>
+            <div class="member-header-title">My Account</div>
+        </div>
+
+        <div class="member-hero-card">
+            <div class="member-signin-tag" onclick="openPromoDetail('Daily Sign In', 'প্রতিদিন সাইন ইন করে ফ্রি বোনাস সংগ্রহ করুন!')">
+                <i class="far fa-check-square"></i><span>Sign In</span><i class="fas fa-chevron-right" style="font-size:9px;"></i>
+            </div>
+
+            <div class="member-profile-top">
+                <div class="member-avatar-ring">👩🏻</div>
+                <div>
+                    <div class="member-vip-pill"><i class="fas fa-crown"></i><span>VIP0</span></div>
+                    <div class="member-id-line">
+                        <span>1917451148</span>
+                        <i class="far fa-copy" style="font-size:13px; cursor:pointer;" onclick="copyText('1917451148')"></i>
+                    </div>
+                    <div class="member-sub-line">
+                        <span>Nickname: <b class="sharedNick">1917451148</b></span>
+                        <i class="fas fa-pen" style="font-size:10px; cursor:pointer;" onclick="editNickname()"></i>
+                    </div>
+                    <div class="member-sub-line">Joined: 2026-10-27</div>
+                </div>
+            </div>
+
+            <div class="member-bal-bar">
+                <div class="member-bal-amt">৳ <span class="sharedBal">0.00</span></div>
+                <i class="fas fa-redo-alt member-refresh-icon" onclick="refreshBalance(this)"></i>
+            </div>
+
+            <div class="member-action-btns">
+                <button class="m-act-btn" onclick="openPromoDetail('Deposit', 'bKash, Nagad বা Rocket-এর মাধ্যমে দ্রুত ডিপোজিট করুন।')">Deposit</button>
+                <button class="m-act-btn" onclick="openPromoDetail('Withdrawal', 'আপনার ওয়ালেট থেকে দ্রুত উত্তোলনের অনুরোধ পাঠান।')">Withdrawal</button>
+                <button class="m-act-btn" onclick="openPromoDetail('Bank Account', 'আপনার ব্যাংক বা মোবাইল ব্যাংকিং অ্যাকাউন্ট যুক্ত ও যাচাই করুন।')">Bank<br>Account</button>
+            </div>
+        </div>
+
+        <div class="member-center-pill">Member Center</div>
+
+        <div class="member-menu-grid">
+            <div class="m-menu-item" onclick="switchPage('reward')"><div class="m-icon-circle"><i class="fas fa-trophy"></i></div><div class="m-menu-label">My Rewards</div></div>
+            <div class="m-menu-item" onclick="openPromoDetail('Bet History', 'আপনার সাম্প্রতিক গেম ও বেটিং ইতিহাস এখানে দেখুন।')"><div class="m-icon-circle"><i class="fas fa-star-of-life"></i></div><div class="m-menu-label">Bet History</div></div>
+            <div class="m-menu-item" onclick="openPromoDetail('Profit And Loss', 'দৈনিক ও মাসিক লাভ-ক্ষতির সারসংক্ষেপ দেখুন।')"><div class="m-icon-circle"><i class="fas fa-file-invoice-dollar"></i></div><div class="m-menu-label">Profit And Loss</div></div>
+            <div class="m-menu-item" onclick="openPromoDetail('Deposit Record', 'আপনার সফল ও পেন্ডিং ডিপোজিট রেকর্ডসমূহ।')"><div class="m-icon-circle"><i class="fas fa-clipboard-check"></i></div><div class="m-menu-label">Deposit Record</div></div>
+
+            <div class="m-menu-item" onclick="openPromoDetail('Withdrawal Record', 'আপনার উইথড্রল হিস্টোরি ও স্ট্যাটাস দেখুন।')"><div class="m-icon-circle"><i class="fas fa-file-export"></i></div><div class="m-menu-label">Withdrawal Record</div></div>
+            <div class="m-menu-item" onclick="openPromoDetail('Transaction History', 'সকল লেনদেন, বোনাস ও অ্যাডজাস্টমেন্টের তালিকা।')"><div class="m-icon-circle"><i class="fas fa-search-dollar"></i></div><div class="m-menu-label">Transaction History</div></div>
+            <div class="m-menu-item" onclick="openPromoDetail('My Account', 'অ্যাকাউন্ট প্রোফাইল ও ব্যক্তিগত তথ্য।')"><div class="m-icon-circle"><i class="fas fa-user"></i></div><div class="m-menu-label">My Account</div></div>
+            <div class="m-menu-item" onclick="openPromoDetail('Security Center', 'পাসওয়ার্ড পরিবর্তন ও অ্যাকাউন্ট সিকিউরিটি সেটিংস।')"><div class="m-icon-circle"><i class="fas fa-shield-alt"></i></div><div class="m-menu-label">Security Center</div></div>
+
+            <div class="m-menu-item" onclick="switchPage('invite')"><div class="m-icon-circle"><i class="fas fa-user-plus"></i></div><div class="m-menu-label">Invite Friends</div></div>
+            <div class="m-menu-item" onclick="openPromoDetail('Mission', 'দৈনিক মিশন সম্পন্ন করে অতিরিক্ত রিওয়ার্ড ক্লেইম করুন!')"><div class="m-icon-circle"><i class="fas fa-gift"></i><span class="m-badge-red">1</span></div><div class="m-menu-label">Mission</div></div>
+            <div class="m-menu-item" onclick="openPromoDetail('Rebate', 'প্রতিদিনের ডিপোজিট ও বেটিং রিবেট বোনাস দেখুন।')"><div class="m-icon-circle"><i class="fas fa-sync-alt"></i></div><div class="m-menu-label">Rebate</div></div>
+            <div class="m-menu-item" onclick="openPromoDetail('Internal Message', 'আপনার ১৫টি অপঠিত সিস্টেম ও বোনাস নোটিফিকেশন রয়েছে।')"><div class="m-icon-circle"><i class="fas fa-at"></i><span class="m-badge-red">15</span></div><div class="m-menu-label">Internal Message</div></div>
+
+            <div class="m-menu-item" onclick="openPromoDetail('Suggestion', 'প্ল্যাটফর্ম উন্নত করতে আপনার মতামত বা সাজেশন দিন।')"><div class="m-icon-circle"><i class="fas fa-comment-dots"></i></div><div class="m-menu-label">Suggestion</div></div>
+            <div class="m-menu-item" onclick="alert('Downloading CK44 Mobile App...')"><div class="m-icon-circle"><i class="fas fa-mobile-alt"></i></div><div class="m-menu-label">Download APP</div></div>
+            <div class="m-menu-item" onclick="openPromoDetail('Customer Service', '২৪/৭ লাইভ সাপোর্টে যোগাযোগ করুন।')"><div class="m-icon-circle"><i class="fas fa-headset"></i></div><div class="m-menu-label">Customer Service</div></div>
+            <div class="m-menu-item" onclick="switchPage('login')"><div class="m-icon-circle"><i class="fas fa-sign-out-alt"></i></div><div class="m-menu-label">Logout</div></div>
+        </div>
+    </div>
+
+    <!-- =====================================
+         6. REGISTER PAGE VIEW
+         ===================================== -->
+    <div class="auth-screen-view" id="page-register">
+        <div class="auth-screen-back" onclick="switchPage('home')"><i class="fas fa-chevron-left"></i></div>
+
+        <div class="logo auth-screen-logo">
+            <span class="ck">CK44</span><span class="divider">|</span><span class="win">win</span><span class="tk">tk</span>
+        </div>
+
+        <div class="auth-screen-heading">Register</div>
+        <div class="auth-switch-prompt">
+            Already have an account? <span class="auth-switch-link" onclick="switchPage('login')">Login</span>
+        </div>
+
+        <form onsubmit="event.preventDefault(); alert('Registration Successful!'); switchPage('home');">
+            <div class="auth-field-box">
+                <i class="fas fa-phone auth-field-icon"></i>
+                <input type="tel" class="auth-field-input" placeholder="Phone number" required>
+            </div>
+
+            <div class="auth-field-box">
+                <i class="fas fa-lock auth-field-icon"></i>
+                <input type="password" id="regPassInput" class="auth-field-input" placeholder="Password" required>
+                <i class="fas fa-eye-slash auth-eye-btn" onclick="togglePassVisibility('regPassInput', this)"></i>
+            </div>
+
+            <div class="auth-field-box">
+                <i class="fas fa-lock auth-field-icon"></i>
+                <input type="password" id="regConfirmPassInput" class="auth-field-input" placeholder="Confirm password" required>
+                <i class="fas fa-eye-slash auth-eye-btn" onclick="togglePassVisibility('regConfirmPassInput', this)"></i>
+            </div>
+
+            <div class="auth-check-row" onclick="toggleCheckBox(this)">
+                <div class="auth-custom-check checked"><i class="fas fa-check"></i></div>
+                <span>I am over 18 years of age and have read and accepted Terms &amp; Conditions, Privacy Policy &amp; Betting Rules as published on the site.</span>
+            </div>
+
+            <div class="auth-check-row" onclick="toggleCheckBox(this)">
+                <div class="auth-custom-check"></div>
+                <span>I would like to receive details of special offers, free bets and other promotions.</span>
+            </div>
+
+            <button type="submit" class="btn-auth-submit" style="margin-top: 10px;">Register</button>
+        </form>
+
+        <div class="auth-social-row" style="margin-top: 22px;">
+            <div class="auth-social-btn auth-fb-btn" onclick="alert('Connecting with Facebook...')"><i class="fab fa-facebook-f"></i></div>
+            <div class="auth-social-btn auth-gg-btn" onclick="alert('Connecting with Google...')"><i class="fab fa-google" style="color:#ea4335;"></i></div>
+        </div>
+    </div>
+
+    <!-- =====================================
+         7. LOGIN PAGE VIEW
+         ===================================== -->
+    <div class="auth-screen-view" id="page-login">
+        <div class="auth-screen-back" onclick="switchPage('home')"><i class="fas fa-chevron-left"></i></div>
+
+        <div class="logo auth-screen-logo">
+            <span class="ck">CK44</span><span class="divider">|</span><span class="win">win</span><span class="tk">tk</span>
+        </div>
+
+        <div class="auth-screen-heading">Login</div>
+        <div class="auth-switch-prompt">
+            No account yet? <span class="auth-switch-link" onclick="switchPage('register')">Register</span>
+        </div>
+
+        <form onsubmit="event.preventDefault(); alert('Login Successful!'); switchPage('home');">
+            <div class="auth-field-box">
+                <i class="fas fa-phone auth-field-icon"></i>
+                <input type="tel" class="auth-field-input" placeholder="Phone number" required>
+            </div>
+
+            <div class="auth-field-box">
+                <i class="fas fa-lock auth-field-icon"></i>
+                <input type="password" id="loginPassInput" class="auth-field-input" placeholder="Password" required>
+                <i class="fas fa-eye-slash auth-eye-btn" onclick="togglePassVisibility('loginPassInput', this)"></i>
+            </div>
+
+            <div class="auth-meta-row">
+                <div class="auth-check-row" style="margin-bottom:0;" onclick="toggleCheckBox(this)">
+                    <div class="auth-custom-check checked"><i class="fas fa-check"></i></div>
+                    <span>Remember</span>
+                </div>
+                <span class="auth-forgot-link" onclick="openPromoDetail('Forgot Password', 'পাসওয়ার্ড রিসেট করতে কাস্টমার সার্ভিসে যোগাযোগ করুন বা রেজিস্টার্ড নম্বর যাচাই করুন।')">Forgot password?</span>
+            </div>
+
+            <button type="submit" class="btn-auth-submit">Login</button>
+        </form>
+
+        <div class="auth-or-divider">Or Connect With</div>
+
+        <div class="auth-social-row">
+            <div class="auth-social-btn auth-fb-btn" onclick="alert('Connecting with Facebook...')"><i class="fab fa-facebook-f"></i></div>
+            <div class="auth-social-btn auth-gg-btn" onclick="alert('Connecting with Google...')"><i class="fab fa-google" style="color:#ea4335;"></i></div>
+        </div>
+    </div>
+
+    <!-- Bottom Sheet Picker -->
+    <div class="sheet-overlay" id="pickerSheet" onclick="if(event.target.id==='pickerSheet') closeSheet()">
+        <div class="sheet-box">
+            <div class="sheet-header">
+                <span class="sheet-title" id="sheetTitleText">Types</span>
+                <button class="sheet-close" onclick="closeSheet()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="sheetOptionsList"></div>
+        </div>
+    </div>
+
+    <!-- Floating Widgets -->
+    <div class="floating-widgets" id="floatingWidgets">
+        <div class="float-btn float-wa" onclick="alert('Opening WhatsApp Support...')"><i class="fab fa-whatsapp"></i></div>
+        <div class="float-btn float-fb" onclick="alert('Opening Facebook Page...')"><i class="fab fa-facebook-f"></i></div>
+        <div class="float-btn float-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fas fa-chevron-up"></i></div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" id="bottomNav">
+        <div class="nav-item active" id="nav-home" onclick="switchPage('home')"><i class="fas fa-home"></i><span>Home</span></div>
+        <div class="nav-item" id="nav-promotion" onclick="switchPage('promotion')"><i class="fas fa-gift"></i><span>Promotion</span></div>
+        <div class="nav-invite-wrapper" onclick="switchPage('invite')">
+            <div class="nav-invite-circle"><i class="fas fa-share-nodes"></i></div>
+            <span>Invite</span>
+        </div>
+        <div class="nav-item" id="nav-reward" onclick="switchPage('reward')"><i class="fas fa-award"></i><span>Reward</span></div>
+        <div class="nav-item" id="nav-member" onclick="switchPage('member')"><i class="fas fa-user-circle"></i><span>Member</span></div>
+    </nav>
+
+</div>
+
+<!-- Promo Detail / Promo Code Input Modal -->
+<div class="modal-overlay" id="promoModal" onclick="if(event.target.id==='promoModal') closePromoModal()">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closePromoModal()"><i class="fas fa-times"></i></button>
+        <h3 id="detailTitle" style="color:#fde047; font-size:16px; margin-bottom:10px; padding-right:25px;"></h3>
+        <p id="detailDesc" style="color:#e2e8f0; font-size:13px; line-height:1.5; margin-bottom:14px;"></p>
+        <div id="promoCodeInputArea" style="display:none; margin-bottom:12px;">
+            <input type="text" id="promoCodeField" placeholder="Enter Promo Code (e.g. WINTK999)" style="width:100%; background:#041b17; border:1px solid #185c51; border-radius:8px; padding:10px; color:#fff; font-size:13px;">
+        </div>
+        <button class="btn-gold-full" id="promoModalBtn" onclick="closePromoModal();">OK</button>
+    </div>
+</div>
+
+<script>
+    function openDrawer() {
+        document.getElementById('sideDrawer').classList.add('open');
+        document.getElementById('drawerBackdrop').classList.add('show');
+    }
+
+    function closeDrawer() {
+        document.getElementById('sideDrawer').classList.remove('open');
+        document.getElementById('drawerBackdrop').classList.remove('show');
+    }
+
+    const slidesData = [
+        { cls: '', tag: 'CK44', title: 'স্বপ্ন বিজয়ী<br>৫০,০০০ টাকা', sub: '50K Lucky Draw & Welcome Bonus', icon: '🎁' },
+        { cls: 'slide-2', tag: 'CK44', title: 'নতুন সদস্য সংবর্ধনা কর্মসূচী', sub: 'নতুন নতুন খেলায় মজা এবং আনন্দ!', icon: '🎉' },
+        { cls: 'slide-3', tag: 'CK44 50% BONUS', title: 'আপনার প্রথম ডিপোজিটে<br>৫০% লাকি ড্র বোনাস', sub: '১০,০০০ টাকা পর্যন্ত', icon: '🪙' },
+        { cls: '', tag: 'WINTK', title: 'WINTK PROMO CODE EVERYDAY', sub: 'Grab today\'s promo code & win', icon: '🔥' },
+        { cls: 'slide-2', tag: 'উলফাডাঙ্গা', title: 'উলফাডাঙ্গা স্পেশাল বোনাস', sub: '৫০০ টাকা পর্যন্ত বিশেষ অফার', icon: '👑' }
+    ];
+
+    function setBannerSlide(idx, dotEl) {
+        const s = slidesData[idx] || slidesData[0];
+        const box = document.getElementById('heroBannerBox');
+        box.className = 'hero-banner ' + s.cls;
+        document.getElementById('bannerTag').innerText = s.tag;
+        document.getElementById('bannerTitle').innerHTML = s.title;
+        document.getElementById('bannerSub').innerText = s.sub;
+        document.getElementById('bannerIcon').innerText = s.icon;
+
+        document.querySelectorAll('.b-dot').forEach(d => d.classList.remove('active'));
+        if (dotEl) dotEl.classList.add('active');
+    }
+
+    function selectHomeCat(el, catName) {
+        document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+        document.getElementById('homeSectionTitle').innerText = catName + ' GAMES';
+    }
+
+    function toggleFav(element) { element.classList.toggle('liked'); }
+
+    function filterPromos(category, btnElement) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btnElement.classList.add('active');
+        document.querySelectorAll('.promo-card').forEach(card => {
+            const cats = card.getAttribute('data-cat') || '';
+            card.style.display = (category === 'all' || cats.includes(category)) ? 'block' : 'none';
+        });
+    }
+
+    function switchPage(pageName) {
+        document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.auth-screen-view').forEach(a => a.classList.remove('active'));
+
+        const targetEl = document.getElementById('page-' + pageName);
+        if (targetEl) targetEl.classList.add('active');
+
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(n => n.classList.remove('active'));
+        const activeNav = document.getElementById('nav-' + pageName);
+        if (activeNav) activeNav.classList.add('active');
+
+        const mainHeader = document.getElementById('mainHeader');
+        const downloadBar = document.getElementById('downloadBar');
+        const floatingWidgets = document.getElementById('floatingWidgets');
+        const bottomNav = document.getElementById('bottomNav');
+
+        if (pageName === 'reward' || pageName === 'invite' || pageName === 'member') {
+            mainHeader.style.display = 'none';
+            if (downloadBar) downloadBar.style.display = 'none';
+            floatingWidgets.style.display = 'none';
+            bottomNav.classList.remove('hidden-nav');
+        } else if (pageName === 'login' || pageName === 'register') {
+            mainHeader.style.display = 'none';
+            if (downloadBar) downloadBar.style.display = 'none';
+            floatingWidgets.style.display = 'none';
+            bottomNav.classList.add('hidden-nav');
+        } else {
+            mainHeader.style.display = 'flex';
+            floatingWidgets.style.display = 'flex';
+            bottomNav.classList.remove('hidden-nav');
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function togglePassVisibility(inputId, iconEl) {
+        const inp = document.getElementById(inputId);
+        if (!inp) return;
+        if (inp.type === 'password') {
+            inp.type = 'text';
+            iconEl.classList.remove('fa-eye-slash');
+            iconEl.classList.add('fa-eye');
+        } else {
+            inp.type = 'password';
+            iconEl.classList.remove('fa-eye');
+            iconEl.classList.add('fa-eye-slash');
+        }
+    }
+
+    function toggleCheckBox(rowEl) {
+        const box = rowEl.querySelector('.auth-custom-check');
+        if (!box) return;
+        box.classList.toggle('checked');
+        if (box.classList.contains('checked')) {
+            box.innerHTML = '<i class="fas fa-check"></i>';
+        } else {
+            box.innerHTML = '';
+        }
+    }
+
+    function switchInviteSubTab(subName, tabEl) {
+        document.querySelectorAll('.invite-tab').forEach(t => t.classList.remove('active'));
+        tabEl.classList.add('active');
+        document.querySelectorAll('.invite-subview').forEach(v => v.classList.remove('active'));
+        document.getElementById('inv-sub-' + subName).classList.add('active');
+    }
+
+    let selectedType = 'Invitation Rewards';
+    let selectedStatus = 'All';
+
+    function openSheet(mode) {
+        const titleEl = document.getElementById('sheetTitleText');
+        const listEl = document.getElementById('sheetOptionsList');
+        listEl.innerHTML = '';
+
+        if (mode === 'types') {
+            titleEl.innerText = 'Types';
+            const opts = ['Invitation Rewards', 'Achievement Rewards', 'Deposit Rebate', 'Betting Rebate'];
+            opts.forEach(item => {
+                const isSel = item === selectedType;
+                const div = document.createElement('div');
+                div.className = 'sheet-option' + (isSel ? ' selected' : '');
+                div.innerHTML = `<span>${item}</span>${isSel ? '<i class="fas fa-check"></i>' : ''}`;
+                div.onclick = () => { selectedType = item; document.getElementById('selectedTypeLabel').innerText = item; closeSheet(); };
+                listEl.appendChild(div);
+            });
+        } else {
+            titleEl.innerText = 'Status';
+            const opts = ['All', 'Qualified', 'Not Qualified'];
+            opts.forEach(item => {
+                const isSel = item === selectedStatus;
+                const div = document.createElement('div');
+                div.className = 'sheet-option' + (isSel ? ' selected' : '');
+                div.innerHTML = `<span>${item}</span>${isSel ? '<i class="fas fa-check"></i>' : ''}`;
+                div.onclick = () => { selectedStatus = item; document.getElementById('selectedStatusLabel').innerText = item; closeSheet(); };
+                listEl.appendChild(div);
+            });
+        }
+        document.getElementById('pickerSheet').classList.add('show');
+    }
+
+    function closeSheet() { document.getElementById('pickerSheet').classList.remove('show'); }
+
+    function updateCalculator(users) {
+        const numUsers = parseInt(users, 10);
+        const expected = numUsers * 1000;
+        document.getElementById('calcUsersCount').innerText = numUsers;
+        document.getElementById('calcRevenueText').innerText = '৳ ' + expected.toLocaleString('en-US', { minimumFractionDigits: 2 });
+    }
+
+    function copyText(val) {
+        navigator.clipboard.writeText(val);
+        alert('Copied: ' + val);
+    }
+
+    function editNickname() {
+        const firstEl = document.querySelector('.sharedNick');
+        const current = firstEl ? firstEl.innerText : '1917451148';
+        const newNick = prompt('Enter new Nickname:', current);
+        if (newNick && newNick.trim() !== '') {
+            document.querySelectorAll('.sharedNick').forEach(el => el.innerText = newNick.trim());
+        }
+    }
+
+    function refreshBalance(icon) {
+        icon.style.transform = 'rotate(360deg)';
+        setTimeout(() => { icon.style.transform = 'rotate(0deg)'; }, 400);
+    }
+
+    function openPromoDetail(title, desc) {
+        document.getElementById('detailTitle').innerText = title;
+        document.getElementById('detailDesc').innerText = desc;
+        document.getElementById('promoCodeInputArea').style.display = 'none';
+        document.getElementById('promoModalBtn').innerText = 'OK';
+        document.getElementById('promoModalBtn').onclick = function() { closePromoModal(); };
+        document.getElementById('promoModal').classList.add('show');
+    }
+
+    function openPromoCodeModal() {
+        document.getElementById('detailTitle').innerText = 'Redeem Promo Code';
+        document.getElementById('detailDesc').innerText = 'আপনার প্রাপ্ত WINTK বা উলফাডাঙ্গা প্রোমো কোডটি নিচে লিখুন:';
+        document.getElementById('promoCodeInputArea').style.display = 'block';
+        document.getElementById('promoModalBtn').innerText = 'REDEEM CODE';
+        document.getElementById('promoModalBtn').onclick = function() {
+            const code = document.getElementById('promoCodeField').value;
+            if (!code) { alert('Please enter a promo code!'); return; }
+            alert('Promo Code "' + code + '" Applied!');
+            closePromoModal();
+        };
+        document.getElementById('promoModal').classList.add('show');
+    }
+
+    function closePromoModal() { document.getElementById('promoModal').classList.remove('show'); }
+</script>
+
 </body>
 </html>
